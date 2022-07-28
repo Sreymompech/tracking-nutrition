@@ -1,4 +1,4 @@
-from email import message
+
 from flask import Blueprint, request, redirect, url_for, jsonify, abort, make_response, flash
 from app.models.user import User
 from app import db
@@ -135,3 +135,5 @@ def logout():
     logout_user()
     return redirect(url_for("login"))
 
+from app import create_app
+from flask import Blueprint, request, redirect, url_for, jsonify, abort, make_response, flash

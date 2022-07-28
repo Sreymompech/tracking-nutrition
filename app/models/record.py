@@ -8,5 +8,5 @@ class Record(db.Model):
     brand_name = db.Column(db.String, nullable=False)
     cals = db.Column(db.Integer, nullable=False)
     fat = db.Column(db.Integer, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=True)
+    user_id = db.Column(db.BigInteger, db.ForeignKey("user.id"), nullable=True)
     

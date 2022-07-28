@@ -3,12 +3,12 @@ from flask_login import UserMixin
 from flask import jsonify, abort, make_response
 
 class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
     email = db.Column(db.String, unique=True)
     user_name = db.Column(db.String)
     password = db.Column(db.String)
     name = db.Column(db.String)
-    google_id = db.Column(db.String)
+    google_id = db.Column(db.BigInteger)
     picture = db.Column(db.String)
     dob = db.Column(db.DateTime)
     gender = db.Column(db.String)
