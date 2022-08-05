@@ -1,0 +1,30 @@
+.food-search-form {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.food-search-input, .log-date-input {
+ 
+    border: 1px solid black;
+    border-radius: 12px;
+}
+
+.food-search-btn {
+    margin-left: 10px;
+    border: 1px solid gray;
+    border-radius: 12px;
+    width: 80px;
+}
+
+.food-search-input {
+    margin-right: 10px;
+}
+
+.log-date-input {
+    margin-right: 100px;
+    margin-left: 10px;
+}

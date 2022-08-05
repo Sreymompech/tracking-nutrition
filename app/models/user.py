@@ -1,16 +1,20 @@
 from app import db
 from flask_login import UserMixin
-from flask import jsonify, abort, make_response
+from flask import jsonify
+import uuid
+from sqlalchemy.dialects.postgresql import UUID
+from datetime import datetime
 
 class User(db.Model, UserMixin):
-    id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
-    email = db.Column(db.String, unique=True)
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    register_at = db.Column(db.DateTime, nullable=False)
+    email = db.Column(db.String, unique=True, nullable=False)
     user_name = db.Column(db.String)
     password = db.Column(db.String)
-    name = db.Column(db.String)
-    google_id = db.Column(db.BigInteger)
+    name = db.Column(db.String, nullable=False)
+    login_id = db.Column(db.Text, nullable=False)
     picture = db.Column(db.String)
-    dob = db.Column(db.DateTime)
+    dob = db.Column(db.Date)
     gender = db.Column(db.String)
     height_inches = db.Column(db.String)
     weight_pound = db.Column(db.Integer)
@@ -19,10 +23,11 @@ class User(db.Model, UserMixin):
     def response_user_profile(self):
         return {
             "id": self.id,
-            "google_id": self.google_id,
+            "register_at": self.register_at,
+            "login_id": self.login_id,
             "email": self.email,
             "name": self.name,
-            "dob": self.name,
+            "dob": self.dob,
             "picture": self.picture,
             "gender": self.gender,
             "height_inches": self.height_inches,
@@ -31,7 +36,7 @@ class User(db.Model, UserMixin):
 
     @staticmethod
     def post_user_oauth(user):
-        chosen_user = User.query.get(user["google_id"])
+        chosen_user = User.query.get(user["user_id"])
         if not chosen_user:
             new_user = User(
                 email=user["email"],
@@ -47,7 +52,7 @@ class User(db.Model, UserMixin):
             )
             db.session.add(new_user)
             db.session.commit()
-        return jsonify(new_user), 201
+            return jsonify(new_user), 201
 
     @staticmethod
     def get_user_oauth(google_id):

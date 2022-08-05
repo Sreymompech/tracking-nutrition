@@ -1,0 +1,119 @@
+
+.user-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.user-picture {
+    width: 30px;
+    height: 30px;
+    margin-bottom: 0;
+    
+}
+
+.user-name, .user-picture, .user-logout, .nav-profile, .nav-food, .nav-report {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.nav-link {
+    position: relative;
+    outline: none;
+    border: none;
+    color: #03e9f4;
+    padding: 10px 20px;
+    overflow: hidden;
+    transition: 0.6s;
+    font-size: 16px;
+    background: transparent;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.span-animate {
+    position: absolute;
+    display: block;
+}
+
+.span-animate:nth-child(1), .span-submit1 {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: line1 1s linear infinite;
+}
+
+.span-animate:nth-child(2), .span-submit2 {
+    top: -100px;
+    right: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: line2 1s linear infinite;
+    animation-delay: 0.26s;
+}
+
+.span-animate:nth-child(3), .span-submit3 {
+    right: -100px;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: line3 1s linear infinite;
+    animation-delay: 0.5s;
+}
+
+.span-animate:nth-child(4), .span-submit4 {
+    bottom: 100px;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: line4 1s linear infinite;
+    animation-delay: 0.76s;
+}
+@keyframes line1 {
+    0% { left: -100%;}
+    60%, 100% { left: 100%;}
+}
+
+@keyframes line2 {
+    0% { top: -100%;}
+    60%, 100% { top: 100%;}
+}
+
+@keyframes line3 {
+    0% { right: -100%;}
+    60%, 100% { right: 100%;}
+}
+
+@keyframes line4 {
+    0% { bottom: -100%;}
+    60%, 100% { bottom: 100%;}
+}
+.nav-link:hover {
+    background-color: #03e9f4;
+    color: white;
+    box-shadow: 0 5px 10px gray, 0 0 20px gray, 0 0 40px gray, 0 0 60px gray;
+    border-radius: 3px;
+}
+
+/* .link-container {
+    background-color: lavender;
+    padding: 10px 15px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+} */
+

@@ -1,5 +1,5 @@
 
-from flask import Flask
+from flask import Flask, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import os
@@ -14,30 +14,26 @@ migrate = Migrate()
 load_dotenv()
 
 # Configuration
-GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
-GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
-GOOGLE_DISCOVERY_URL = (
-    "https://accounts.google.com/.well-known/openid-configuration"
-)
+# GOOGLE_CLIENT_ID = os.environ.get("GOOGLE_CLIENT_ID", None)
+# GOOGLE_CLIENT_SECRET = os.environ.get("GOOGLE_CLIENT_SECRET", None)
+# GOOGLE_DISCOVERY_URL = (
+#     "https://accounts.google.com/.well-known/openid-configuration"
+# )
 
 
 def create_app():
     app = Flask(__name__)
+    CORS(app)
+    app.config['SECRET_KEY'] = os.environ.get("APP_SECRET_KEY")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
         "SQLALCHEMY_DATABASE_URI")
 
-    app.secret_key = os.environ.get("APP_SECRET_KEY")
     
-    os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+    
+    #os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 
-    # https://flask-login.readthedocs.io/en/latest
-    login_manager = LoginManager()
-    login_manager.init_app(app)
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.get(user_id)
 
     # import models here for Alembic setup
     from app.models.record import Record
@@ -49,13 +45,28 @@ def create_app():
 
     #import Blueprint
     from app.routes.proxy import proxy_bp
-    from app.routes.google_oauths import google_bp
+    from app.routes.records import records_bp
+    from app.routes.users import users_bp
 
     # register Blueprint
     app.register_blueprint(proxy_bp)
-    app.register_blueprint(google_bp)
+    app.register_blueprint(records_bp)
+    app.register_blueprint(users_bp)
 
-    CORS(app)
+    # https://flask-login.readthedocs.io/en/latest
+    login_manager = LoginManager()
+    login_manager.login_view = 'google_oauths.login'
+    login_manager.init_app(app)
+
+    @login_manager.user_loader
+    def load_user(login_id):
+        users = User.query.all()
+        for user in users:
+            if user.login_id == login_id:
+                return user
+        return flash("User is not login")
+        
+    
     return app
 
 

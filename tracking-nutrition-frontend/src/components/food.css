@@ -1,0 +1,23 @@
+.food-list {
+    display: grid;
+    grid-template-columns:1fr 1.5fr 1fr;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 10px;
+
+}
+
+.food-brand, .food-name, .food-cal, .food-fat, .btn-add-food {
+
+    margin-right: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    align-self: start;
+    justify-self: start;
+}
+
+
