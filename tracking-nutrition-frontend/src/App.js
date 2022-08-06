@@ -7,8 +7,13 @@ import Report from "./pages/Report";
 import { AuthContextProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import Protected from "./components/Protected";
+// import { useEffect } from "react";
+// import { UserAuth } from "./context/AuthContext";
 
 function App() {
+  // const { updateExistUser, existUser } = UserAuth();
+
+  // useEffect(updateExistUser, []);
   return (
     <div className="App">
       <AuthContextProvider>

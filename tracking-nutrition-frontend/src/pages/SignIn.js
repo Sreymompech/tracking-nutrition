@@ -7,7 +7,8 @@ import { useNavigate } from "react-router-dom";
 //import { firebaseApp } from "../firebase-config";
 
 const SignIn = () => {
-  const { googleSignIn, googleUser } = UserAuth();
+  const { googleSignIn, googleUser, existUser, oauthUser, updateExistUser } =
+    UserAuth();
   const navigate = useNavigate();
   const handleGoogleSignIn = async () => {
     try {
@@ -20,8 +21,12 @@ const SignIn = () => {
   useEffect(() => {
     if (googleUser !== null) {
       navigate("/profile");
+      oauthUser(googleUser);
+      console.log("exist user", existUser);
     }
   }, [googleUser]);
+
+  //useEffect(updateExistUser, [existUser]);
 
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-white relative">

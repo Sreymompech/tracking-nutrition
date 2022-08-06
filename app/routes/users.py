@@ -19,16 +19,24 @@ def create_user_login():
     request_user = validate_key_login()
     if "register_at" not in request_user:
         register_at = datetime.now()
-    new_user = User(
-        email = request_user["email"],
-        name = request_user["name"],
-        picture = request_user["picture"],
-        login_id = request_user["login_id"],
-        register_at = register_at
-    )
-    db.session.add(new_user)
-    db.session.commit()
-    return jsonify(new_user.response_user_profile()), 201
+    
+    chosen_user = False
+    users = User.query.all()
+    for user in users:
+        if request_user["email"] == user.email and request_user["login_id"] == user.login_id:
+            chosen_user = True
+    if not chosen_user:
+        new_user = User(
+            email = request_user["email"],
+            name = request_user["name"],
+            picture = request_user["picture"],
+            login_id = request_user["login_id"],
+            register_at = register_at
+        )
+        db.session.add(new_user)
+        db.session.commit()
+        return jsonify(new_user.response_user_profile()), 201
+    abort(make_response({"message": f"The user was existed in database"}, 200))
         #register_at = datetime.strptime(request_user["register_at"], "%b %d %Y %H:%M:%S")
     # users = User.query.all()
     # for user in users:
