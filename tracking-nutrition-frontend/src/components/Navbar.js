@@ -14,12 +14,28 @@ const Navbar = () => {
       console.log(error);
     }
   };
-
+  // flex justify-between bg-gray-200 w-full p-4 navLink
   return (
-    <div className="flex justify-between bg-gray-200 w-full p-4">
+    <div className="navLink flex justify-between bg-gray-200 w-full p-4 navLink">
       <div className="navbar">{googleUser?.displayName && <NavbarLink />}</div>
       <div className="user-profile">
-        <div className="user-picture">
+        {googleUser?.displayName ? (
+          <div className="google-profile">
+            <div className="user-picture">
+              <img src={`${googleUser?.photoURL}`} alt="" />
+            </div>
+            <div className="nav-link">
+              {googleUser?.displayName}
+              <span className="span-animate"></span>
+              <span className="span-animate"></span>
+              <span className="span-animate"></span>
+              <span className="span-animate"></span>
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        {/* <div className="user-picture">
           <img src={`${googleUser?.photoURL}`} alt="" />
         </div>
         <div className="nav-link">
@@ -28,7 +44,7 @@ const Navbar = () => {
           <span className="span-animate"></span>
           <span className="span-animate"></span>
           <span className="span-animate"></span>
-        </div>
+        </div> */}
         <div className="user-logout">
           {googleUser?.displayName ? (
             <button onClick={handleSignOut} className="nav-link">
@@ -39,13 +55,7 @@ const Navbar = () => {
               <span className="span-animate"></span>
             </button>
           ) : (
-            <Link to="/" className="nav-link">
-              Sign in
-              <span className="span-animate"></span>
-              <span className="span-animate"></span>
-              <span className="span-animate"></span>
-              <span className="span-animate"></span>
-            </Link>
+            ""
           )}
         </div>
       </div>

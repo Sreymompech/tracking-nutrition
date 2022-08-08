@@ -28,6 +28,21 @@ def validate_key_post_record():
         abort(make_response({"message": "Missing total_cals"}, 400))
     elif "total_fat" not in request_record:
         abort(make_response({"message": "Missing total_fat"}, 400))
+
+def validate_key_update_record():
+    request_record = request.get_json()
+    if "meal_type" in request_record and "serving_qty" in request_record and "total_cals" in request_record \
+            and "total_fat" in request_record:
+        return request_record
+    if "meal_type" not in request_record:
+        abort(make_response({"message": "Missing meal_type"}, 400))
+    elif "serving_qty" not in request_record:
+        abort(make_response({"message": "Missing serving_qty"}, 400))
+    elif "total_cals" not in request_record:
+        abort(make_response({"message": "Missing total_cals"}, 400))
+    elif "total_fat" not in request_record:
+        abort(make_response({"message": "Missing total_fat"}, 400))
+
     
 
 def sort_or_filter_records():

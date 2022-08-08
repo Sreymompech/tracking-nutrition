@@ -1,16 +1,30 @@
-.record-list {
+/* .record-list {
     display: grid;
     grid-template-columns:1fr 1fr 1fr 1fr 1.5fr 0.5fr 0.5fr;
     margin-left: 200px;
     margin-right: 200px;
     margin-bottom: 10px;
 
+} */
+
+.record-list, .tb-list{
+    display: flex;
+    margin-left: 150px;
+    /* margin-bottom: 15px; */
+
 }
 
-.record-content {
+/* .header-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} */
 
-    margin-right: 15px;
-    border: 1px solid black;
+
+.record-meal, .record-amount, .record-item, .btn-delete, .btn-update, .tb-meal, .tb-amount, .tb-item, .tb-del, .tb-update, .tb-date, .datelog {
+
+    /* margin-right: 15px; */
+    border: 1px solid rgb(220, 216, 216);
     border-radius: 5px;
     padding-left: 10px;
     padding-right: 10px;
@@ -18,4 +32,26 @@
     padding-bottom: 3px;
     align-self: start;
     justify-self: start;
+}
+.record-item, .tb-item {
+    justify-self: flex-start;
+    min-width: 700px;
+}
+
+.btn-delete, .btn-update, .tb-del, .tb-update {
+    display: flex;
+    justify-self: flex-end;
+    width: fit-content
+}
+
+.tb-meal, .record-meal {
+    width: 125px;
+}
+
+.tb-amount, .record-amount {
+    width: 80px
+}
+
+.tb-date, .datelog {
+    width: 150px;
 }

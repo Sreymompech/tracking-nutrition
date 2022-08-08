@@ -21,13 +21,19 @@ export const AuthContextProvider = ({ children }) => {
   // keep tracking user login from google (google user info)
   const [googleUser, setGoogleUser] = useState({});
   // keep tracking user login by id in database
-  const [existUser, setExistUser] = useState({});
+  const [existUser, setExistUser] = useState(
+    JSON.parse(localStorage.getItem("existUser")) || {}
+  );
   // hold all users in database in state
   //const [userDBData, setUserDBData] = useState([]);
   // keep tracking record belong to each user
   const [eachUserRecordData, setEachUserRecordData] = useState([]);
+  // keep tracking response food from request
+  const [responseFoodData, setResponseFoodData] = useState([]);
   // URL for users route at backend
   const userURL = "http://127.0.0.1:5000/users";
+  // URL for calling food api from backend
+  const foodURL = "http://127.0.0.1:5000/foods";
 
   // sign in function
   const googleSignIn = () => {
@@ -55,12 +61,14 @@ export const AuthContextProvider = ({ children }) => {
 
   // fetch each user by id
   const fetchUserById = (user_id) => {
+    console.log("user id", user_id);
     axios
       .get(`${userURL}/${user_id}`)
       .then((resp) => {
         console.log("exist user", resp);
-        const userExist = { ...resp.data };
-        setExistUser(userExist);
+
+        const user = { ...resp.data };
+        localStorage.setItem("existUser", JSON.stringify(user));
       })
       .catch((err) => {
         console.log(err);
@@ -102,8 +110,8 @@ export const AuthContextProvider = ({ children }) => {
             user.login_id === loginUser["providerData"][0].uid &&
             user.email === loginUser?.email
           ) {
+            updateExistUser();
             confirmUser = !confirmUser;
-            fetchUserById(user.id);
             alert("Login sucessful");
           }
         }
@@ -170,12 +178,63 @@ export const AuthContextProvider = ({ children }) => {
       });
   };
 
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     // this is the format to call google id from googleUser --> currentUser["providerData"][0].uid
+  //     setGoogleUser(currentUser);
+  //     console.log("currentUser", currentUser);
+  //   });
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       // this is the format to call google id from googleUser --> currentUser["providerData"][0].uid
       setGoogleUser(currentUser);
     });
-    return () => {
+    return () => (currentUser) => {
+      axios
+        .get(userURL)
+        .then((response) => {
+          const userData = [...response.data];
+          console.log("user Data", userData);
+          if (userData.length === 0) {
+            const newUser = {
+              email: currentUser?.email,
+              name: currentUser?.displayName,
+              picture: currentUser?.photoURL,
+              login_id: currentUser["providerData"][0].uid,
+            };
+            createLogInUser(newUser);
+          }
+
+          let confirmUser = false;
+          for (let user of userData) {
+            if (
+              user.login_id === currentUser["providerData"][0].uid &&
+              user.email === currentUser?.email
+            ) {
+              localStorage.setItem("existUser", JSON.stringify(user));
+              //setExistUser(user);
+              confirmUser = !confirmUser;
+              alert("Login sucessful");
+            }
+          }
+          if (confirmUser === false) {
+            const newUser = {
+              email: currentUser?.email,
+              name: currentUser?.displayName,
+              picture: currentUser?.photoURL,
+              login_id: currentUser["providerData"][0].uid,
+            };
+            createLogInUser(newUser);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       unsubscribe();
     };
   }, []);
@@ -190,8 +249,8 @@ export const AuthContextProvider = ({ children }) => {
         existUser,
         eachUserRecordData,
         fetchUserRecord,
-        updateExistUser,
-        oauthUser,
+        responseFoodData,
+        setResponseFoodData,
       }}
     >
       {/* children will replace by all components that want to access the value of AuthContext provider */}

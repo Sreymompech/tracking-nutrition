@@ -6,7 +6,7 @@ from app.models.user import User
 from app import db
 from datetime import datetime
 from sqlalchemy import asc, desc
-from app.routes.helper_function import validate_key_post_record, get_record_or_abort, get_user_or_abort, validate_key_login, validate_key_profile
+from app.routes.helper_function import validate_key_post_record, get_record_or_abort, get_user_or_abort, validate_key_login, validate_key_profile, validate_key_update_record
 from flask_cors import cross_origin
 
 users_bp = Blueprint("users", __name__, url_prefix="/users")
@@ -243,17 +243,14 @@ def create_record_belong_user(user_id):
 #         return jsonify(new_record.response_record()), 201
 
 # update record belong a user id
-@users_bp.route("/<user_id>/records/<record_id>", methods=["PUT", "PATCH"])
+@users_bp.route("/<user_id>/records/<record_id>", methods=["PATCH"])
 @cross_origin()
 def update_record_belong_user(user_id, record_id):
     chosen_record = get_record_or_abort(record_id)
-    request_record = validate_key_post_record()
+    request_record = validate_key_update_record()
     if chosen_record and str(chosen_record.user_id) == user_id:
-        chosen_record.log_date = datetime.strptime(request_record["log_date"], "%m/%d/%Y")
-        chosen_record.meal_type = request_record["meal_type"].capitalize(),
-        chosen_record.serving_qty = request_record["serving_qty"],
-        chosen_record.item_name = request_record["item_name"],
-        chosen_record.brand_name = request_record["brand_name"],
+        chosen_record.meal_type = request_record["meal_type"].capitalize()
+        chosen_record.serving_qty = request_record["serving_qty"]
         chosen_record.total_cals = request_record["total_cals"],
         chosen_record.total_fat = request_record["total_fat"]
         

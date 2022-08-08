@@ -1,4 +1,11 @@
+.navLink {
+    background: rgb(176,141,30);
+    background: linear-gradient(90deg, rgba(176,141,30,0.76087759322479) 0%, rgba(106,204,219,1) 67%, rgba(162,208,218,1) 100%);
 
+    /* background: rgb(169,227,188);
+    background: linear-gradient(90deg, rgba(169,227,188,1) 0%, rgba(208,194,52,0.7917367630646008) 48%, rgba(172,224,176,1) 100%); */
+
+}
 .user-profile {
     display: flex;
     flex-direction: row;
@@ -10,7 +17,8 @@
 .user-picture {
     width: 30px;
     height: 30px;
-    margin-bottom: 0;
+    margin-bottom: 8px;
+    align-self: flex-end;
     
 }
 
@@ -19,7 +27,7 @@
     margin-right: 20px;
 }
 
-.navbar {
+.navbar, .google-profile {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;

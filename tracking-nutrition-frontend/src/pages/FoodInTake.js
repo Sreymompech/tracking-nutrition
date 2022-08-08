@@ -1,9 +1,10 @@
 import React from "react";
 import FoodInTakeSearch from "../components/FoodInTakeSearch";
+import "./foodintake.css";
 
 const FoodInTake = () => {
   return (
-    <div>
+    <div className="food-container">
       <FoodInTakeSearch />
     </div>
   );
