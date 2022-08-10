@@ -39,6 +39,8 @@ export const AuthContextProvider = ({ children }) => {
   const [inTakeCalories, setInTakeCalories] = useState([]);
   // keep tracking log dat list
   const [logDateList, setLogDateList] = useState([]);
+  // keep tracking food list by log date record
+  const [foodListRecord, setFoodListRecord] = useState([]);
   // URL for users route at backend
   const userURL = "http://127.0.0.1:5000/users";
   // URL for calling food api from backend
@@ -203,14 +205,17 @@ export const AuthContextProvider = ({ children }) => {
           }
         }
         setLogDateList(dateList);
-        console.log("dateList", dateList);
+        //console.log("dateList", dateList);
 
         // set state of total calories by log date
         const caloriesList = [];
+        // create record list for each log date
+        const logDateRecords = [];
         for (let date of dateList) {
           let totalCals = 0;
           let totalFats = 0;
           let countRecord = 0;
+          const records = [];
           for (let record of recordData) {
             // convert log_date to string
             const stringDatelog = record.log_date.toString();
@@ -223,27 +228,28 @@ export const AuthContextProvider = ({ children }) => {
               countRecord += 1;
               totalCals += record.total_cals;
               totalFats += record.total_fat;
+              records.push(record);
             }
           }
 
           // calculate cal diff, fat diff, cal asses, fat assess
           const calDiff = Number(totalCals - caloriesGoal).toFixed(2);
-          const fatGoal = Number(totalCals * 0.3).toFixed(2);
+          const fatGoal = Number(caloriesGoal * 0.3).toFixed(2);
           const fatDiff = Number(fatGoal - totalFats).toFixed(2);
 
           let caloriesAss = "";
-          if (calDiff > 5) {
+          if (totalCals > caloriesGoal + 5) {
             caloriesAss = "Above Goal";
-          } else if (calDiff < -5) {
+          } else if (totalCals < caloriesGoal - 5) {
             caloriesAss = "Below Goal";
           } else {
             caloriesAss = "In Range";
           }
 
           let fatAss = "";
-          if (fatDiff > 5) {
+          if (totalFats > fatGoal + 5) {
             fatAss = "Above Goal";
-          } else if (fatDiff < -5) {
+          } else if (totalFats < fatGoal - 5) {
             fatAss = "Below Goal";
           } else {
             fatAss = "In Range";
@@ -260,10 +266,20 @@ export const AuthContextProvider = ({ children }) => {
             calsAss: caloriesAss,
             fatsAss: fatAss,
           });
+
+          logDateRecords.push({
+            date: date,
+            foodList: records,
+            totalCals: Number(totalCals).toFixed(2),
+            totalFats: Number(totalFats).toFixed(2),
+            totalRecord: countRecord,
+          });
         }
         setInTakeCalories(caloriesList);
-        console.log("caloriesList", caloriesList);
-        console.log("calories goal", caloriesGoal);
+        setFoodListRecord(logDateRecords);
+        // console.log("caloriesList", caloriesList);
+        // console.log("calories goal", caloriesGoal);
+        // console.log("FoodListRecord", logDateRecords);
       })
       .catch((error) => {
         console.log("fetch user record error", error);
@@ -371,6 +387,7 @@ export const AuthContextProvider = ({ children }) => {
         setCaloriesGoal,
         inTakeCalories,
         logDateList,
+        foodListRecord,
       }}
     >
       {/* children will replace by all components that want to access the value of AuthContext provider */}

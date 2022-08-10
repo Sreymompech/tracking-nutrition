@@ -1,7 +1,7 @@
 import React from "react";
 import Food from "./Food";
 import "./record.css";
-
+// intake page for food record
 const FoodsList = (props) => {
   const foodComponents = props.foodSearchData.map((foodData, index) => {
     return (

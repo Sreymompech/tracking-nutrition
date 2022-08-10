@@ -5,6 +5,7 @@ import { UserAuth } from "../context/AuthContext";
 import { useState } from "react";
 import moment from "moment";
 
+// intake page for food record
 const Record = (props) => {
   const { googleUser, existUser, fetchUserRecord } = UserAuth();
   const [mealType, setMealType] = useState("");

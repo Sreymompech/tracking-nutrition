@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProfileHeader from "./ProfileHeader";
 import { UserAuth } from "../context/AuthContext";
 import NutritionAssessementRecord from "./NutritionAssessementRecord";
@@ -12,7 +12,9 @@ const NutritionionAssessementList = (props) => {
     caloriesGoal,
     fetchUserRecord,
   } = UserAuth();
-  fetchUserRecord(existUser.id);
+  useEffect(() => {
+    fetchUserRecord(existUser.id);
+  }, []);
   console.log("inTakeCalories", inTakeCalories);
   const nutritionComponent = inTakeCalories.map((record, index) => {
     return (
