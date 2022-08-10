@@ -55,3 +55,10 @@
 .tb-date, .datelog {
     width: 150px;
 }
+
+.recordshow-list {
+    min-height: 1vh;
+    max-height: 1vh;
+    width: fit-content;
+    overflow: scroll;
+}

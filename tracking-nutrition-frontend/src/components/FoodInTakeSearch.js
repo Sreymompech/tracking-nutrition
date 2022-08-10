@@ -113,26 +113,31 @@ const FoodInTakeSearch = () => {
             Search
           </button>
         </div>
+        {/* <div className="filter-container">
+          <select id="filter-button">
+            <option value="" key="">
+              Filter record
+            </option>
+            <option value="all" key="all">
+              All
+            </option>
+            <option value="log_date" key="log_date">
+              Date
+            </option>
+            <option value="meal_type" key="meal_type">
+              Meal
+            </option>
+          </select>
+        </div> */}
       </div>
-      <div>
-        {/* {responseFoodData.length > 0 ? (
-          <FoodsList
-            foodSearchData={responseFoodData}
-            dateLog={logDate}
-            addFoodCallback={addFood}
-          />
-        ) : (
-          <FoodRecordList recordFoodURL={recordFoodURL} />
-        )} */}
-        {responseFoodData.length > 0 && (
-          <FoodsList
-            foodSearchData={responseFoodData}
-            dateLog={logDate}
-            addFoodCallback={addFood}
-          />
-        )}
-        {visibleRecordForm && <FoodRecordList recordFoodURL={recordFoodURL} />}
-      </div>
+      {responseFoodData.length > 0 && (
+        <FoodsList
+          foodSearchData={responseFoodData}
+          dateLog={logDate}
+          addFoodCallback={addFood}
+        />
+      )}
+      {visibleRecordForm && <FoodRecordList recordFoodURL={recordFoodURL} />}
     </div>
   );
 };

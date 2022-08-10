@@ -11,9 +11,11 @@ import Protected from "./components/Protected";
 // import { UserAuth } from "./context/AuthContext";
 
 function App() {
-  // const { updateExistUser, existUser } = UserAuth();
+  // const { fetchUserRecord, existUser } = UserAuth();
 
-  // useEffect(updateExistUser, []);
+  // useEffect(() => {
+  //   fetchUserRecord(existUser.id);
+  // }, [existUser.id]);
   return (
     <div className="App">
       <AuthContextProvider>

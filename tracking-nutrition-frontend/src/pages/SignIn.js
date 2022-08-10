@@ -60,7 +60,7 @@ import { useNavigate } from "react-router-dom";
 //import { firebaseApp } from "../firebase-config";
 
 const SignIn = () => {
-  const { googleSignIn, googleUser } = UserAuth();
+  const { googleSignIn, googleUser, existUser, oauthUser } = UserAuth();
   const navigate = useNavigate();
   const handleGoogleSignIn = async () => {
     try {
@@ -73,6 +73,10 @@ const SignIn = () => {
   useEffect(() => {
     if (googleUser !== null) {
       navigate("/profile");
+      oauthUser(googleUser);
+      // fetchUserRecord(existUser.id);
+      // console.log("calories goal", caloriesGoal);
+      console.log("exist user", existUser);
     }
   }, [googleUser]);
 
@@ -84,7 +88,7 @@ const SignIn = () => {
         alt="bg-img"
       ></img>
 
-      <div className="absolute top-0 left-0 right-0 bottom-0 bg-black bg-opacity-40"></div>
+      <div className="absolute top-0 left-0 right-0 bottom-0 bg-gray-500 bg-opacity-40"></div>
       <div className="box">
         <span className="square"></span>
         <span className="square"></span>

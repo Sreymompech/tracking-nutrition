@@ -6,7 +6,7 @@ const FoodsList = (props) => {
   const foodComponents = props.foodSearchData.map((foodData, index) => {
     return (
       <Food
-        key={index}
+        key={foodData.item_id}
         // foodData={foodData}
         item_id={foodData.item_id}
         brand_name={foodData.brand_name}

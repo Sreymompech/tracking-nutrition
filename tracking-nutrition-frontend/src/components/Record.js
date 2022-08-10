@@ -3,12 +3,19 @@ import "./record.css";
 import axios from "axios";
 import { UserAuth } from "../context/AuthContext";
 import { useState } from "react";
-import Moment from "moment";
+import moment from "moment";
 
 const Record = (props) => {
   const { googleUser, existUser, fetchUserRecord } = UserAuth();
   const [mealType, setMealType] = useState("");
   const [amount, setAmount] = useState("");
+  // convert log_date to string
+  const stringDatelog = props.log_date;
+  // convert log_date to format we want to display
+  const formatedlogdate = moment(
+    stringDatelog,
+    "ddd, DD MMM YYYY HH:mm:ss z"
+  ).format("MM/DD/YYYY");
 
   // updated food by call backend route
   const updateFood = (newFood) => {
@@ -74,10 +81,8 @@ const Record = (props) => {
         <button className="btn-update" onClick={onUpdateFood}>
           Update
         </button>
-      </div>
-      <div className="datelog">
-        {Moment(props.log_date).format("MM/DD/YYYY")}
-      </div>
+      </div>{" "}
+      <div className="datelog">{formatedlogdate}</div>
       <div className="record-meal">
         <select id="sort-button" onChange={(e) => setMealType(e.target.value)}>
           <option value="" key="">
@@ -111,3 +116,5 @@ const Record = (props) => {
 };
 
 export default Record;
+
+//Moment(props.log_date).format("MM/DD/YYYY")

@@ -1,0 +1,15 @@
+
+.profile-content, .profile-infor {
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 17px;
+}
+
+.profile-infor {
+    color:rgb(5, 5, 194);
+    font-weight: bold;
+    font-size: 20px;
+    background-color: rgb(196, 190, 190);
+    padding: 3px;
+    margin-bottom: 10px;
+}

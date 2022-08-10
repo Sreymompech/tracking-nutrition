@@ -1,0 +1,67 @@
+
+.asses-report-list {
+    min-height: 1vh;
+    max-height: 1vh;
+    overflow: scroll;
+}
+
+.nutri-asses-report {
+    text-align: center;
+    font-size: 30px;
+}
+
+.nutri-asses-des {
+    padding: 20px;
+}
+
+
+.asses-title {
+    color:rgb(5, 5, 194);
+    font-weight: bold;
+    font-size: 18px;
+    padding: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgb(196, 190, 190);
+
+}
+.asse-head-container, .asses-cal-container, .asses-fat-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.asse-intake, .asse-goal, .asse-diff, .asses-report-date, .empty, .asses-cal-asses, .asses-fat-asses {
+    width: 150px;
+    text-align: center;
+}
+
+.asse-date, .asse-nutrition, .asse-assessement, .asses-nutri-cal, .asses-nutri-fat {
+    width: 150px;
+    text-align: center;
+}
+
+.sses-report-nutri {
+    display: flex;
+    flex-direction: column;
+}
+
+.asses-report-cal, .asses-report-fat, .asses-cal-goal, .asses-cal-diff, .asses-fat-goal, .asses-fat-diff {
+    width: 150px;
+    padding-left: 50px;
+    /* text-align: center; */
+}
+
+.asse-date,  .asse-intake, .asse-goal, .asse-diff, .asses-report-date, .asse-assessement, .asse-nutrition {
+    font-weight: bold;
+}
+
+.asses-cal-diff-red, .asses-fat-diff-red {
+    width: 150px;
+    padding-left: 50px;
+    color: red;
+
+}
