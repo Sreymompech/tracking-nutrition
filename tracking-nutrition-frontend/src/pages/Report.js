@@ -3,29 +3,19 @@ import "../components/nutritionassessment.css";
 import { UserAuth } from "../context/AuthContext";
 import MyFoodListReport from "../components/MyFoodListReport";
 import NutritionAssessementList from "../components/NutritionAssessementList";
+import "../components/profileheader.css";
 
 const Report = () => {
-  // const {
-  //   existUser,
-  //   inTakeCalories,
-  //   logDateList,
-  //   caloriesGoal,
-  //   fetchUserRecord,
-  //   foodListRecord,
-  // } = UserAuth();
-  // fetchUserRecord(existUser.id);
-  // keep tracking report type
   const [reporType, setReportType] = useState("");
   return (
-    <div>
-      {/* <MyFoodListReport /> */}
+    <div className="select-report-container">
       <div className="report-type">
         <select
           id="report-select"
           onChange={(e) => setReportType(e.target.value)}
         >
           <option value="" key="">
-            Repor Type
+            Report Type
           </option>
           <option value="myFoodList" key="myFoodList">
             MyFoodList
@@ -37,10 +27,6 @@ const Report = () => {
       </div>
       {(reporType === "myFoodList" && <MyFoodListReport />) ||
         (reporType === "nutritionAsscessment" && <NutritionAssessementList />)}
-      {/* {reporType === "NutritionAssessment" ? <NutritionAssessementList /> : ""} */}
-      {/* <ProfileHeader /> */}
-      {/* <NutritionAssessementList /> */}
-      {/* <MyFoodListReport /> */}
     </div>
   );
 };

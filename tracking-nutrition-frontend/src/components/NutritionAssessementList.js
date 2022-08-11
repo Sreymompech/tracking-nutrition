@@ -33,7 +33,7 @@ const NutritionionAssessementList = (props) => {
   });
 
   return (
-    <div>
+    <div className="nutri-asse-container">
       <div className="nutri-asses-report">Nutrion Assessement Report</div>
       <div className="nutri-asses-des">
         A close-up picture of the Calories and Fat consumed.
@@ -48,7 +48,7 @@ const NutritionionAssessementList = (props) => {
         <div className="asse-diff">Diff</div>
         <div className="asse-assessement">Assessement</div>
       </div>
-      <div>{nutritionComponent}</div>
+      <div className="asses-report-list">{nutritionComponent}</div>
     </div>
   );
 };

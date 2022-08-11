@@ -59,17 +59,6 @@ export const AuthContextProvider = ({ children }) => {
     signOut(auth);
   };
 
-  // fetch all users from DB and store in state
-  // const fetchAllUserDb = () => {
-  //   axios
-  //     .get(userURL)
-  //     .then((response) => {
-  //       const users = [...response.data];
-  //       setUserDBData(users);
-  //     })
-  //     .catch((err) => {});
-  // };
-
   // fetch each user by id
   const fetchUserById = (user_id) => {
     console.log("user id", user_id);
@@ -277,9 +266,6 @@ export const AuthContextProvider = ({ children }) => {
         }
         setInTakeCalories(caloriesList);
         setFoodListRecord(logDateRecords);
-        // console.log("caloriesList", caloriesList);
-        // console.log("calories goal", caloriesGoal);
-        // console.log("FoodListRecord", logDateRecords);
       })
       .catch((error) => {
         console.log("fetch user record error", error);
@@ -296,65 +282,6 @@ export const AuthContextProvider = ({ children }) => {
       localStorage.setItem("caloriesGoal", JSON.stringify(2000));
     }
   };
-
-  // useEffect(fetchUserRecord, []);
-  // set
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     // this is the format to call google id from googleUser --> currentUser["providerData"][0].uid
-  //     // set google log in user into state when they log in
-  //     setGoogleUser(currentUser);
-  //     console.log("google user", currentUser);
-  //   });
-  //   return () => (currentUser) => {
-  //     // call backend to fetch all user in database
-  //     axios
-  //       .get(userURL)
-  //       .then((response) => {
-  //         const userData = [...response.data];
-  //         console.log("user Data", userData);
-  //         // if database is empty then add user log in into database
-  //         if (userData.length === 0) {
-  //           const newUser = {
-  //             email: currentUser?.email,
-  //             name: currentUser?.displayName,
-  //             picture: currentUser?.photoURL,
-  //             login_id: currentUser["providerData"][0].uid,
-  //           };
-  //           createLogInUser(newUser);
-  //         }
-  //         // if user exist in database then store their user id in logcal storage
-  //         let confirmUser = false;
-  //         for (let user of userData) {
-  //           if (
-  //             user.login_id === currentUser["providerData"][0].uid &&
-  //             user.email === currentUser?.email
-  //           ) {
-  //             // store exist user into local storage so when the page refresh the existUser state will not empty
-  //             localStorage.setItem("existUser", JSON.stringify(user));
-  //             confirmUser = !confirmUser;
-  //             // set stat of calories goal for user
-  //             defineCaloriesGoal(user.gender);
-  //             alert("Login sucessful");
-  //           }
-  //         }
-  //         // add new user to database
-  //         if (confirmUser === false) {
-  //           const newUser = {
-  //             email: currentUser?.email,
-  //             name: currentUser?.displayName,
-  //             picture: currentUser?.photoURL,
-  //             login_id: currentUser["providerData"][0].uid,
-  //           };
-  //           createLogInUser(newUser);
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //     unsubscribe();
-  //   };
-  // }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

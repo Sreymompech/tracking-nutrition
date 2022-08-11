@@ -24,9 +24,9 @@ function ProfileHeader() {
   };
 
   return (
-    <div>
+    <div className="profile-container">
       <div className="profile-infor">ProfileInfor</div>
-      <div>
+      <div className="profile-content-container">
         <span className="profile-content">{existUser.name}</span>
         <span className="profile-content">{existUser.gender}</span>
         <span className="profile-content">

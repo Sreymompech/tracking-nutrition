@@ -3,13 +3,7 @@ import { UserAuth } from "../context/AuthContext";
 import "./nutritionassessment.css";
 
 const NutritionAssessementRecord = (props) => {
-  const {
-    existUser,
-    inTakeCalories,
-    logDateList,
-    caloriesGoal,
-    fetchUserRecord,
-  } = UserAuth();
+  const { caloriesGoal } = UserAuth();
 
   return (
     <div className="asses-report-container">

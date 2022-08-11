@@ -179,7 +179,7 @@ def get_all_records_by_user(user_id):
             response_body.append(record.response_record())
         
     # sort response_body by register_at
-    return jsonify((sorted(response_body, key=lambda x: x["register_at"]))), 200
+    return jsonify((sorted(response_body, key=lambda x: x["log_date"]))), 200
 
 
 # get a record belong user id

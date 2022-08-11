@@ -1,7 +1,9 @@
 
 .asses-report-list {
-    min-height: 1vh;
-    max-height: 1vh;
+    min-height: 50vh;
+    max-height: 50vh;
+    min-width: 950px;
+    max-width: 950px;
     overflow: scroll;
 }
 
@@ -12,6 +14,10 @@
 
 .nutri-asses-des {
     padding: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-self: center;
+    align-items: f;
 }
 
 
@@ -25,8 +31,9 @@
     margin-left: 10px;
     margin-right: 10px;
     background-color: rgb(196, 190, 190);
-
+    width: 950px;
 }
+
 .asse-head-container, .asses-cal-container, .asses-fat-container {
     display: flex;
     justify-content: flex-start;
@@ -37,6 +44,7 @@
 .asse-intake, .asse-goal, .asse-diff, .asses-report-date, .empty, .asses-cal-asses, .asses-fat-asses {
     width: 150px;
     text-align: center;
+    
 }
 
 .asse-date, .asse-nutrition, .asse-assessement, .asses-nutri-cal, .asses-nutri-fat {
@@ -51,17 +59,34 @@
 
 .asses-report-cal, .asses-report-fat, .asses-cal-goal, .asses-cal-diff, .asses-fat-goal, .asses-fat-diff {
     width: 150px;
-    padding-left: 50px;
+    text-align: center;
+    
     /* text-align: center; */
 }
 
-.asse-date,  .asse-intake, .asse-goal, .asse-diff, .asses-report-date, .asse-assessement, .asse-nutrition {
+.asse-date,  .asse-intake, .asse-goal, .asse-diff, .asse-assessement, .asse-nutrition, .asses-report-date {
     font-weight: bold;
 }
 
 .asses-cal-diff-red, .asses-fat-diff-red {
     width: 150px;
-    padding-left: 50px;
+    text-align: center;
     color: red;
 
+}
+
+.nutri-asse-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.asse-intake, .asse-goal, .asse-diff,  .asse-assessement, .asse-nutrition, .asse-date, .asses-report-cal, .asses-report-fat, .asses-cal-goal, .asses-cal-diff, .asses-fat-goal, .asses-fat-diff, .asses-cal-diff-red, .asses-fat-diff-red, .asses-nutri-cal, .asses-nutri-fat, .asses-cal-asses, .asses-fat-asses  {
+    height: 35px;
+    border: 1px solid rgb(247, 243, 243);
+}
+
+.asses-report-date {
+    margin-top: 15px;
 }

@@ -1,48 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
-import FoodReport from "./FoodReport";
-import NutritionAssessementList from "../components/NutritionAssessementList";
+// import MyFoodReport from "./MyFoodReport";
+// import NutritionAssessementList from "../components/NutritionAssessementList";
 import ProfileHeader from "../components/ProfileHeader";
+import "./myfoodlistreport.css";
+import MyFoodReportList from "./MyFoodReportList";
 
 const MyFoodListReport = (props) => {
-  const {
-    existUser,
-    inTakeCalories,
-    logDateList,
-    caloriesGoal,
-    fetchUserRecord,
-    foodListRecord,
-  } = UserAuth();
+  const { fetchUserRecord, existUser, foodListRecord } = UserAuth();
   // fetchUserRecord(existUser.id);
   useEffect(() => {
     fetchUserRecord(existUser.id);
   }, []);
   console.log("foodListRecord", foodListRecord);
-  const foodListRecordComponent = foodListRecord.map((record, index) => () => {
-    record["foodList"][index].map((food, i) => {
-      return (
-        <FoodReport
-          key={i}
-          date={foodListRecord.date}
-          meal={food[i].meal_type}
-          // item={record["foodList"].item_name}
-          // brand={record["foodList"].brand_name}
-          // amount={record["foodList"].serving_qty}
-          // calories={record["foodList"].total_cals}
-          // fats={record.total_fat}
-          totalCals={foodListRecord.totalCals}
-          totalFats={foodListRecord.totalFats}
-          totalRecords={foodListRecord.totalRecord}
-        />
-      );
-    });
+  const foodListRecordComponent = foodListRecord.map((record, index) => {
+    return (
+      <MyFoodReportList
+        key={index}
+        date={record.date}
+        myFoodRecords={record["foodList"]}
+        totalCals={record.totalCals}
+        totalFats={record.totalFats}
+        totalRecords={record.totalRecord}
+      />
+    );
   });
 
-  // useEffect(() => {
-  //   fetchUserRecord(existUser.id);
-  // }, [existUser.id]);
   return (
-    <div>
+    <div className="myfood-container">
       <div className="myfood-report">MyFoodList Report</div>
       <div className="myfood-des">
         A intake food list, Calories and Fat consumed.
@@ -57,7 +42,7 @@ const MyFoodListReport = (props) => {
         <div className="food-list-cal">Calories</div>
         <div className="food-list-fat">Fat</div>
       </div>
-      <div>{foodListRecordComponent}</div>
+      <div className="foot-list-compo">{foodListRecordComponent}</div>
     </div>
   );
 };
