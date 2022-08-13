@@ -1,11 +1,22 @@
 .navLink {
-    background: rgb(176,141,30);
-    background: linear-gradient(90deg, rgba(176,141,30,0.76087759322479) 0%, rgba(106,204,219,1) 67%, rgba(162,208,218,1) 100%);
+    /* background: rgb(176,141,30, 0.5);
+    background: linear-gradient(90deg, rgba(176,141,30,0.76087759322479) 0%, rgba(106,204,219,1) 67%, rgba(162,208,218,1) 100%) */
+    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8)), url("https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&w=1200");
+    background-repeat: no-repeat;
+    background-size: cover;
 
-    /* background: rgb(169,227,188);
+    
+}
+
+.navLink1 {
+    background: linear-gradient(rgba(152, 148, 148, 0.8), rgba(9, 110, 105, 0.342)), url("https://images.pexels.com/photos/2318025/pexels-photo-2318025.jpeg?auto=compress&cs=tinysrgb&w=1200");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* background: rgb(169,227,188);
     background: linear-gradient(90deg, rgba(169,227,188,1) 0%, rgba(208,194,52,0.7917367630646008) 48%, rgba(172,224,176,1) 100%); */
 
-}
 .user-profile {
     display: flex;
     flex-direction: row;
@@ -39,14 +50,19 @@
     position: relative;
     outline: none;
     border: none;
-    color: #03e9f4;
-    padding: 10px 20px;
+    color: #B5FFD9;
+    padding: 6px 10px;
     overflow: hidden;
     transition: 0.6s;
     font-size: 16px;
-    background: transparent;
+    background: #FFBF86;
     margin-top: 20px;
     font-weight: bold;
+    box-shadow: -30px 30px 20px rgba(82, 75, 75, 0.3);
+    border-radius: 25px;  
+    font-family: 'Bubbler One', sans-serif;
+    font-size: 20px;  
+    
 }
 
 .span-animate {
@@ -59,7 +75,7 @@
     left: -100%;
     width: 100%;
     height: 3;
-    background: linear-gradient(90deg, transparent, #03e9f4);
+    background: linear-gradient(90deg, transparent, #B5FFD9);
     animation: line1 1s linear infinite;
 }
 
@@ -68,7 +84,7 @@
     right: 0;
     width: 3px;
     height: 100%;
-    background: linear-gradient(180deg, transparent, #03e9f4);
+    background: linear-gradient(180deg, transparent, #0F2C67);
     animation: line2 1s linear infinite;
     animation-delay: 0.26s;
 }
@@ -78,7 +94,7 @@
     bottom: 0;
     width: 100%;
     height: 3px;
-    background: linear-gradient(270deg, transparent, #03e9f4);
+    background: linear-gradient(270deg, transparent, #CD1818);
     animation: line3 1s linear infinite;
     animation-delay: 0.5s;
 }
@@ -88,7 +104,7 @@
     left: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(360deg, transparent, #03e9f4);
+    background: linear-gradient(360deg, transparent, #116530);
     animation: line4 1s linear infinite;
     animation-delay: 0.76s;
 }
@@ -112,16 +128,168 @@
     60%, 100% { bottom: 100%;}
 }
 .nav-link:hover {
-    background-color: #03e9f4;
-    color: white;
-    box-shadow: 0 5px 10px gray, 0 0 20px gray, 0 0 40px gray, 0 0 60px gray;
-    border-radius: 3px;
-}
+    background-color: #B5FFD9;
+    color: #FFBF86;
+    /* box-shadow: 0 5px 10px #B5FFD9, 0 0 20px #FFBF86, 0 0 40px #B5FFD9, 0 0 60px #FFBF86; */
+    border-radius: 25px;
+    box-shadow: -30px 30px 20px rgba(82, 75, 75, 0.3);
+    /* box-shadow: -30px 30px 20px #B5FFD9, 0 0 20px #FFBF86, 0 0 40px #B5FFD9, 0 0 60px #FFBF86; */
+} 
 
 /* .link-container {
     background-color: lavender;
     padding: 10px 15px;
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-} */
+} 
+
+
+
+/* nutrition logo for  text change */
+
+.nav-nutri-logo {
+    margin-left: 10px;
+    position: relative;
+    z-index: 0;
+    border-radius: 3px;
+    font-family: 'Aladin', cursive;
+    font-weight: bold;
+    font-size: 25px;
+    border-bottom: 2px solid white;
+
+    background-image: url('https://images.pexels.com/photos/3631430/pexels-photo-3631430.jpeg?auto=compress&cs=tinysrgb&w=1200');
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: animate 10s infinite linear;
+    border-image: linear-gradient(to right,#ff0062,#00ffff) round;
+    border-image-slice: 1;
+}
+
+@keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 100%;
+    }
+    
+}
+
+/* navbar center */
+
+.nav-container {
+    background: transparent;
+    width: 500px;
+    border-radius: 30px;
+    height: 50px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0px 5px 25px rba(0,0,0,0.2) ;
+    font-family: 'Aladin', cursive;
+    font-size: 20px;
+    
+}
+
+.nav-center {
+    position: relative;
+    background: transparent;
+    color: #B5FFD9;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    padding: 8px;
+    transition: 0.5s;
+    /* box-shadow: 0 60px 40px -7px rgb(0, 0, 0, 0.2); */
+    margin: 10px;
+    box-shadow: -30px 30px 20px rgba(82, 75, 75, 0.3);
+    
+
+}
+
+.nav-center:hover {
+    letter-spacing: 0.25em;
+    background-color: transparent;
+    color: var(--clr);
+    box-shadow: 0 0 35px var(--clr);
+    border: 2px solid var(--clr);
+    box-shadow: -30px 30px 20px rgba(82, 75, 75, 0.3);
+    /* box-shadow: -30px 30px 20px var(--clr); */
+    border-radius: 20px;
+}
+
+.nav-center::before {
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background-color: transparent;
+}
+
+.nav-center span {
+    position: relative;
+    z-index: 1;
+
+}
+
+.nav-center i {
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+
+.nav-center i::before {
+    content: "";
+    position: absolute;
+    top: -7px;
+    left: 80%;
+    width: 15px;
+    height: 10px;
+    border: 2px solid var(--clr);
+    background: #27282c;
+    transform: translateX(-50%);
+    transition: 0.5s;
+
+}
+
+.nav-center:hover i::before {
+    width: 20px;
+    left: 20px;
+    
+
+}
+
+.nav-center i::after {
+    content: "";
+    position: absolute;
+    bottom: -7px;
+    left: 20%;
+    width: 15px;
+    height: 10px;
+    border: 2px solid var(--clr);
+    background: #27282c;
+    transform: translateX(-50%);
+    transition: 0.5s;
+    color: var(--clr);
+
+}
+.nav-center:hover i::after {
+    width: 20px;
+    left: 80%;
+    
+}
+
+.nav-user {
+    font-family: 'Aladin', cursive;
+    font-size: 25px;
+    color: #17D7A0;
+}
+
+
+
 

@@ -79,28 +79,45 @@ const SignIn = () => {
       console.log("exist user", existUser);
     }
   }, [googleUser]);
+  const inde1 = {
+    "--i": 0,
+  };
+  const inde2 = {
+    "--i": 1,
+  };
+  const inde3 = {
+    "--i": 2,
+  };
+  const inde4 = {
+    "--i": 3,
+  };
+  const inde5 = {
+    "--i": 4,
+  };
 
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-white relative">
       <img
         className="absolute top-0 left-0 w-screen h-screen object-cover"
-        src="https://media.istockphoto.com/photos/italian-pasta-ingredients-on-white-wooden-table-top-view-picture-id845461896?k=20&m=845461896&s=612x612&w=0&h=BehqbKOW__ZpwKrPDBA-4jNUbnLyViPHWdWGOB-6084="
+        src="https://images.pexels.com/photos/2318025/pexels-photo-2318025.jpeg?auto=compress&cs=tinysrgb&w=1200"
         alt="bg-img"
       ></img>
 
       <div className="absolute top-0 left-0 right-0 bottom-0 bg-gray-500 bg-opacity-40"></div>
       <div className="box">
-        <span className="square"></span>
-        <span className="square"></span>
-        <span className="square"></span>
-        <span className="square"></span>
-        <span className="square"></span>
+        <span className="square" style={inde1}></span>
+        <span className="square" style={inde2}></span>
+        <span className="square" style={inde3}></span>
+        <span className="square" style={inde4}></span>
+        <span className="square" style={inde5}></span>
         <div className="container">
           <div className="formLogin">
             <h2>Welcom to Login</h2>
             <div onClick={handleGoogleSignIn} className="google-btn">
               <FcGoogle fontSize={30} />
-              <p className="text-lg font-semibold ml-4">Sign in with Google</p>
+              <div className="text-lg font-semibold ml-4">
+                Sign in with Google
+              </div>
             </div>
           </div>
         </div>

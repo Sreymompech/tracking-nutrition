@@ -42,7 +42,7 @@ const MyFoodListReport = (props) => {
         <div className="food-list-cal">Calories</div>
         <div className="food-list-fat">Fat</div>
       </div>
-      <div className="foot-list-compo">{foodListRecordComponent}</div>
+      <div className="foot-list-compo">{foodListRecordComponent}</div>;
     </div>
   );
 };

@@ -5,11 +5,39 @@
     min-width: 950px;
     max-width: 950px;
     overflow: scroll;
+    background: white;
+    box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
 }
+    
+
+/* , .asses-report-container */
 
 .nutri-asses-report {
     text-align: center;
     font-size: 30px;
+    font-family: 'Sancreek', cursive;
+    font-size: 40px;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 100;
+    border-radius: 3px;
+    border-bottom: 2px solid white;
+    background-image: url('https://images.pexels.com/photos/1191710/pexels-photo-1191710.jpeg?auto=compress&cs=tinysrgb&w=1200');
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: food 10s infinite linear;
+    border-image: linear-gradient(to right,#00ffc6,#ffd124) round;
+    border-image-slice: 1;
+}
+
+@keyframes food {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 100%;
+    }
+    
 }
 
 .nutri-asses-des {
@@ -17,12 +45,15 @@
     display: flex;
     justify-content: flex-start;
     align-self: center;
-    align-items: f;
+    align-items: center;
+    font-family: 'Aladin', cursive;
+    font-size: 20px;
+    color: #F08FC0;
 }
 
 
 .asses-title {
-    color:rgb(5, 5, 194);
+    color: #BCFFB9;
     font-weight: bold;
     font-size: 18px;
     padding: 3px;
@@ -32,6 +63,9 @@
     margin-right: 10px;
     background-color: rgb(196, 190, 190);
     width: 950px;
+    font-family: 'Macondo Swash Caps', cursive;
+    font-size: 20px;
+    border-radius: 5px;
 }
 
 .asse-head-container, .asses-cal-container, .asses-fat-container {
@@ -39,6 +73,7 @@
     justify-content: flex-start;
     align-items: center;
     flex-direction: row;
+    background: white;
 }
 
 .asse-intake, .asse-goal, .asse-diff, .asses-report-date, .empty, .asses-cal-asses, .asses-fat-asses {
@@ -48,7 +83,7 @@
 }
 
 .asse-date, .asse-nutrition, .asse-assessement, .asses-nutri-cal, .asses-nutri-fat {
-    width: 150px;
+    width: 166px;
     text-align: center;
 }
 
@@ -89,4 +124,19 @@
 
 .asses-report-date {
     margin-top: 15px;
+}
+
+.asse-date,  .asse-intake, .asse-goal, .asse-diff, .asse-assessement, .asse-nutrition {
+    font-family: 'Aladin', cursive;
+    font-size: 25px;
+}
+
+.asses-report-cal, .asses-report-fat, .asses-cal-goal, .asses-cal-diff, .asses-fat-goal, .asses-fat-diff, .asses-cal-diff-red, .asses-fat-diff-red, .asses-nutri-cal, .asses-nutri-fat, .asses-cal-asses, .asses-fat-asses {
+    font-family: 'Bubbler One', sans-serif;
+    font-size: 20px;
+}
+
+.asses-report-container {
+    background: white;
+    box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
 }

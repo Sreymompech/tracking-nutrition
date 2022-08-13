@@ -1,0 +1,222 @@
+/*for ReportByDateList */
+.selected-date-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-width: 950px;
+    max-width: 950px;
+ 
+
+}
+
+.reportdate-report {
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Sancreek', cursive;
+    margin-bottom: 25px;
+    font-size: 40px;
+    position: relative;
+    z-index: 0;
+    border-radius: 3px;
+    border-bottom: 2px solid white;
+    background-image: url('https://images.pexels.com/photos/5438786/pexels-photo-5438786.jpeg?auto=compress&cs=tinysrgb&w=1200');
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: reportdate-animate 10s infinite linear;
+    border-image: linear-gradient(to right,#ffd93d,#39aea9) round;
+    border-image-slice: 1;
+    width: fit-content;
+}
+
+@keyframes reportdate-animate {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 100%;
+    }
+    
+}
+
+.reportdate-des {
+    padding: 20px;
+    color: #F08FC0;
+    font-family: 'Aladin', cursive;
+    font-size: 20px;
+}
+
+.th-selecteddate-record-title {
+    color:#BCFFB9;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgb(196, 190, 190);
+    width: 950px;
+    font-family: 'Macondo Swash Caps', cursive;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.th-selecteddate-asses-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.th-selecteddate-asses-date, .th-selecteddate-asses-nutri, .th-selecteddate-asses-intake, .th-selecteddate-asses-goal,  .th-selecteddate-asses-diff, .th-selecteddate-asses-assessement {
+    width: 158px;
+    text-align: center;
+    background: white;
+    font-family: 'Aladin', cursive;
+    font-size: 25px;
+    
+}
+
+.selecteddate-cal-container, .selecteddate-fat-content, .th-selecteddate-record-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.empty, .selecteddate-nutri-cal, .selecteddate-report-cal, .selecteddate-cal-goal, .selecteddate-cal-asses, .selecteddate-cal-diff, .selecteddate-cal-diff-red, .selecteddate-fat-diff {
+    width: 158px;
+    text-align: center;
+    background: white;
+    font-family: 'Bubbler One', sans-serif;
+    font-size: 20px;
+}
+
+.selecteddate-fat-diff-red, .selecteddate-cal-red {
+    color: red;
+}
+
+.selecteddate-nutri-fat, .selecteddate-report-fat, .selecteddate-fat-goal, .selecteddate-fat-asses {
+    width: 158px;
+    text-align: center;
+    background: white;
+    font-family: 'Bubbler One', sans-serif;
+    color: black;
+    font-size: 20px;
+}
+
+.th-selecteddate-record-date, .th-selecteddate-record-meal {
+    width: 150px;
+    text-align: center;
+    background: white;
+    font-family: 'Aladin', cursive;
+    font-size: 25px;
+}
+
+.th-selecteddate-record-amount, .th-selecteddate-record-cal, .th-selecteddate-record-fat{
+    width: 110px;
+    text-align: center;
+    background: white;
+    font-family: 'Aladin', cursive;
+    font-size: 25px;
+}
+
+.th-selecteddate-record-item {
+    width: 320px;
+    text-align: center;
+    background: white;
+    font-family: 'Aladin', cursive;
+    font-size: 25px;
+}
+
+.selectedrecord-date {
+    justify-self: flex-start;
+    align-self: flex-start;
+}
+
+.report-list-compo {
+    min-height: 50vh;
+    max-height: 50vh;
+    min-width: 950px;
+    max-width: 950px;
+    overflow: scroll;
+    background: white;
+    box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
+
+}
+
+.total-nutrition-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.total-nutrition-label, .total-records, .total-cals, .total-fats {
+    width: 110px;
+    text-align: center;
+    background: white;
+    font-family: 'Aladin', cursive;
+    font-size: 25px;
+    color: #FFBF86;
+    justify-self: flex-end;
+    align-self: flex-end;
+
+}
+
+.selecteddate-report-date, .selectedrecord-date {
+    background: white;
+    width: 948px;
+    padding-left: 20px;
+}
+
+.selecteddate-report-nutri {
+    background: white;
+}
+
+
+/* for ReportByDate */
+
+.selecteddate-list-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selecteddate-list-date, .selecteddate-list-meal {
+    width: 150px;
+    text-align: center;
+    background: white;
+    font-family: 'Bubbler One', sans-serif;
+    color: black;
+    font-size: 20px;
+    height: 100px;
+}
+
+.selecteddate-list-meal {
+    height: 100px;
+    border: 1px solid rgb(247, 243, 243);
+}
+
+.selecteddate-list-amount, .selecteddate-list-cal, .selecteddate-list-fat {
+    width: 110px;
+    text-align: center;
+    background: white;
+    font-family: 'Bubbler One', sans-serif;
+    color: black;
+    font-size: 20px;
+    height: 100px;
+    border: 1px solid rgb(247, 243, 243);
+}
+
+.selecteddate-list-item {
+    width: 320px;
+    text-align: center;
+    background: white;
+    font-family: 'Bubbler One', sans-serif;
+    color: black;
+    font-size: 20px;
+    overflow-wrap: break-word;
+    height: 100px;
+    border: 1px solid rgb(247, 243, 243);
+}

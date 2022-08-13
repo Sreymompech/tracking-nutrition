@@ -14,8 +14,8 @@ const NutritionionAssessementList = (props) => {
   } = UserAuth();
   useEffect(() => {
     fetchUserRecord(existUser.id);
-  }, []);
-  console.log("inTakeCalories", inTakeCalories);
+  }, [inTakeCalories]);
+
   const nutritionComponent = inTakeCalories.map((record, index) => {
     return (
       <NutritionAssessementRecord
@@ -34,7 +34,7 @@ const NutritionionAssessementList = (props) => {
 
   return (
     <div className="nutri-asse-container">
-      <div className="nutri-asses-report">Nutrion Assessement Report</div>
+      <div className="nutri-asses-report">Nutrition Assessement Report</div>
       <div className="nutri-asses-des">
         A close-up picture of the Calories and Fat consumed.
       </div>
@@ -49,8 +49,13 @@ const NutritionionAssessementList = (props) => {
         <div className="asse-assessement">Assessement</div>
       </div>
       <div className="asses-report-list">{nutritionComponent}</div>
+      {/* {nutritionComponent} */}
     </div>
   );
 };
 
 export default NutritionionAssessementList;
+
+{
+  /* <div className="asses-report-list"></div> */
+}

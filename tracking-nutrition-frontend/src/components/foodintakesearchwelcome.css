@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.intake-welcome-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intake-welcome-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.intake-welcome {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    margin:  90px 0;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
+    border-left: 4px solid #1EAE98;
+    border-bottom: 4px solid #1EAE98;
+    border-radius: 20px;
+    transform: rotate(-10deg) skewX(-9deg);
+    
+    
+}
+
+
+
+.intake-content-title {
+    font-family: 'Macondo Swash Caps', cursive;
+    font-size: 25px;
+    color: #867AE9;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-left: 30px;
+    border-bottom: 2px solid #1EAE98;
+    background-image: url('https://images.pexels.com/photos/3826328/pexels-photo-3826328.jpeg?auto=compress&cs=tinysrgb&w=1200');
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: animate 10s infinite linear;
+    border-image: linear-gradient(to right,#ff0062,#00ffff) round;
+    border-image-slice: 1;
+}
+@keyframes animate {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 100%;
+    }
+    
+    }
+
+p {
+    font-family: 'Shadows Into Light', cursive;
+    font-size: 20px;
+    margin-left: 30px;
+
+}
+
+p.intake-content-des1 {
+    margin-top: 50px;
+}
+
+p.intake-content-des2{
+    margin-top: 30px;
+}
+
+p.intake-content-des3 {
+    margin-top: 50px;
+    display: flex;
+    justify-self: flex-end;
+    align-self: flex-end;
+    margin-right: 100px;
+}
+
+
+
+
+
+
+

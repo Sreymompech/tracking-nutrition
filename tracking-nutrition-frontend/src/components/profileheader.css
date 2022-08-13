@@ -2,17 +2,24 @@
 .profile-content, .profile-infor {
     margin-left: 10px;
     margin-right: 10px;
-    font-size: 17px;
+}
+
+.profile-content {
+    font-size: 20px;
 }
 
 .profile-infor {
-    color:rgb(5, 5, 194);
+    color:#BCFFB9;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 25px;
     background-color: rgb(196, 190, 190);
     padding: 3px;
     margin-bottom: 10px;
     width: 950px;
+    font-family: 'Macondo Swash Caps', cursive;
+    font-size: 20px;
+    border-radius: 5px;
+    
     
 }
 
@@ -29,6 +36,9 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    color: #F08FC0;
+    font-family: 'Aladin', cursive;
+    
 }
 
 .report-type {

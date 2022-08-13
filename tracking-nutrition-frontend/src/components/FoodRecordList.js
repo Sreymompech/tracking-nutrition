@@ -25,7 +25,8 @@ const FoodRecordList = (props) => {
     );
   });
   return (
-    <div>
+    <div className="tb-list-container">
+      <div className="tb-des">Please complete all the empty column.</div>
       <div className="tb-list">
         <div className="tb-del">Delete</div>
         <div className="tb-update">Update</div>
@@ -34,7 +35,7 @@ const FoodRecordList = (props) => {
         <div className="tb-amount">Amount</div>
         <div className="tb-item">Item</div>
       </div>
-      {recordDataComponent}
+      <div className="list-records">{recordDataComponent}</div>
     </div>
   );
 };

@@ -2,15 +2,42 @@
 .myfood-report {
     text-align: center;
     font-size: 30px;
+    font-family: 'Sancreek', cursive;
+    margin-bottom: 25px;
+    font-size: 40px;
+    position: relative;
+    z-index: 0;
+    border-radius: 3px;
+    border-bottom: 2px solid white;
+    background-image: url('https://images.pexels.com/photos/5438786/pexels-photo-5438786.jpeg?auto=compress&cs=tinysrgb&w=1200');
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: nutrition 10s infinite linear;
+    border-image: linear-gradient(to right,#ffd93d,#39aea9) round;
+    border-image-slice: 1;
+}
+
+@keyframes nutrition {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 100%;
+    }
+    
 }
 
 .myfood-des {
     padding: 20px;
+    color: #F08FC0;
+    font-family: 'Aladin', cursive;
+    font-size: 20px;
+    
 }
 
 
 .food-list-title {
-    color:rgb(5, 5, 194);
+    color:#BCFFB9;
     font-weight: bold;
     font-size: 18px;
     padding: 3px;
@@ -20,6 +47,10 @@
     margin-right: 10px;
     background-color: rgb(196, 190, 190);
     width: 950px;
+    font-family: 'Macondo Swash Caps', cursive;
+    font-size: 20px;
+    border-radius: 5px;
+    
 }
 
 .food-list-container {
@@ -33,12 +64,13 @@
 .food-list-date, .food-list-meal, .myfood-list-date, .myfood-list-meal {
     width: 150px;
     text-align: center;
- 
+    background: white;
 }
 
 .food-list-amount, .food-list-cal, .food-list-fat, .myfood-list-amount, .myfood-list-cal, .myfood-list-fat, .total-cal, .total-fat {
-    width: 120px;
+    width: 116px;
     text-align: center;
+    background: white;
 }
 
 .food-list-item, .myfood-list-item {
@@ -50,6 +82,8 @@
     word-wrap: break-word; */
     overflow-wrap: break-word;
     text-align: center;
+    background: white;
+    
 }
 
 .foot-list-compo {
@@ -58,14 +92,21 @@
     min-width: 950px;
     max-width: 950px;
     overflow: scroll;
+    background: white;
+    box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
+
 }
 
 .myfood-list-content {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
+    font-family: 'Bubbler One', sans-serif;
+    color: black;
+    font-size: 20px;
+
 }
 
 .myfood-container {
@@ -74,6 +115,7 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
+    
 }
 .myfood-list-date {
     height: 100px;
@@ -81,6 +123,7 @@
 .myfood-list-meal, .myfood-list-amount, .myfood-list-item, .myfood-list-cal, .myfood-list-fat {
     height: 100px;
     border: 1px solid rgb(247, 243, 243);
+
 
 }
 
@@ -98,6 +141,23 @@
     margin-top: 15px;
 }
 
-.total-cal, .total-fat, .total-nutrition, .total-date {
-    color: rgb(5, 5, 194);
+.total-cal, .total-fat, .total-nutrition  {
+    color: #FFBF86;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+.total-date {
+    font-weight: bold;
+}
+
+.food-list-date, .food-list-meal, .food-list-amount, .food-list-cal, .food-list-fat, .food-list-item{
+    font-family: 'Aladin', cursive;
+    font-size: 25px;
+}
+
+.total-date {
+    font-family: 'Bubbler One', sans-serif;
+    font-size: 20px;
 }

@@ -25,10 +25,10 @@ const Food = (props) => {
   };
 
   return (
-    <div className="food-container">
+    <div className="container-food">
       <div className="food-list">
         <div>
-          <button className="btn-add-food" onClick={addFood}>
+          <button className="btn-add-food add-btn" onClick={addFood}>
             Add
           </button>
         </div>

@@ -218,30 +218,6 @@ def create_record_belong_user(user_id):
         db.session.commit()
         return jsonify(new_record.response_record()), 201
 
-# @users_bp.route("/<user_id>/records", methods=["POST"])
-# def create_record_belong_user(user_id):
-#     chosen_user = get_user_or_abort(user_id)
-#     request_record = validate_key_post_record()
-#     if "register_at" not in request_record or "user_id" not in request_record:
-#         register_at = datetime.now()
-#         request_record["user_id"] = user_id
-
-#     if chosen_user:
-#         new_record = Record(
-#             log_date = datetime.strptime(request_record["log_date"], "%m/%d/%Y"),
-#             # meal_type = request_record["meal_type"].capitalize(),
-#             # serving_qty = request_record["serving_qty"],
-#             register_at = register_at,
-#             item_name = request_record["item_name"],
-#             brand_name = request_record["brand_name"],
-#             total_cals = request_record["total_cals"],
-#             total_fat = request_record["total_fat"],
-#             user_id = request_record["user_id"]
-#         )
-#         db.session.add(new_record)
-#         db.session.commit()
-#         return jsonify(new_record.response_record()), 201
-
 # update record belong a user id
 @users_bp.route("/<user_id>/records/<record_id>", methods=["PATCH"])
 @cross_origin()

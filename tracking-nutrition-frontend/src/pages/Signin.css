@@ -6,7 +6,6 @@
     height: 100%;
     background-size: cover;
 }
-
 .cover-img-bg {
     position: absolute;
     top: 0;
@@ -16,7 +15,6 @@
     background-color: black;
     opacity: 0.5;
 }
-
 .signin-icon {
     display: flex;
     justify-content: center;
@@ -30,22 +28,18 @@
     cursor: pointer;
     width: fit-content;
     height: fit-content;
-
 }
 .signin-icon:hover {
     opacity: 1;
     animation-duration: 5s;
     transition-timing-function: ease-in-out;
-
 }
-
 .signin-icon-content {
     font-family: 'Courier New', Courier, monospace;
     font-size: 16px;
     font-weight: bold;
     margin-left: 10px;
 }
-
 /* new sign in page */
 
 * {
@@ -71,14 +65,12 @@ section {
     position: absolute;
     filter: blur(200px);
 }
-
 section .color:nth-child(1) {
     top: 30px;
     width: 800px;
     height: 800px;
     background: #d689b0;
 }
-
 section .color:nth-child(2) {
     bottom: -50px;
     left: 50px;
@@ -86,7 +78,6 @@ section .color:nth-child(2) {
     height: 500px;
     background: #fffd67;
 }
-
 section .color:nth-child(3) {
     bottom: 50px;
     right: 90px;
@@ -151,7 +142,6 @@ section .color:nth-child(3) {
     height: 100%;
     padding: 40px;
 }
-
 .formLogin h2 {
     position: relative;
     color: #fff;
@@ -160,7 +150,6 @@ section .color:nth-child(3) {
     letter-spacing: 1px;
     margin-bottom: 40px;
 }
-
 .formLogin h2::before {
     content: '';
     position: absolute;
@@ -170,12 +159,10 @@ section .color:nth-child(3) {
     height: 4px;
     background: #fff;
 }
-
 .formLogin .inputBox {
     width: 100%;
     margin-top: 20px;
 }
-
 .formLogin .inputBox input {
     width: 100%;
     background: rgba(255, 255, 255, 0.2);
@@ -191,11 +178,9 @@ section .color:nth-child(3) {
     color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
-
 .formLogin .inputBox input::placeholder {
     color: #fff;
 }
-
 .formLogin .inputBox input[type="submit"] {
     background: #fff;
     color: #666;
@@ -204,12 +189,10 @@ section .color:nth-child(3) {
     margin-bottom: 20px;
     font-weight: 600;
 }
-
 .forget {
     margin-top: 5px;
     color: #fff;
 }
-
 .forget a {
     color: #fff;
     font-weight: 600;

@@ -1,18 +1,121 @@
-/* .record-list {
-    display: grid;
-    grid-template-columns:1fr 1fr 1fr 1fr 1.5fr 0.5fr 0.5fr;
-    margin-left: 200px;
-    margin-right: 200px;
-    margin-bottom: 10px;
-
-} */
-
-.record-list, .tb-list{
+.tb-list-container {
     display: flex;
-    margin-left: 150px;
-    /* margin-bottom: 15px; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tb-des {
+    color: #1EAE98;
+    font-family: 'Aladin', cursive;
+    font-size: 30px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+}
+
+.tb-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background: white;
+    min-width: 950px;
+    max-width: 950px;
+    margin-left: 150px
+
 
 }
+
+.tb-del, .tb-update, .tb-amount, .btn-delete, .btn-update {
+    width: 70px;
+    text-align: center;
+}
+
+.tb-date, .tb-meal, .datelog, .record-meal, .record-amount {
+    width: 150px;
+    text-align: center;
+}
+
+.tb-item, .record-item {
+    width: 440px;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.tb-del, .tb-update, .tb-amount, .tb-date, .tb-meal, .tb-item {
+    font-family: 'Aladin', cursive;
+    font-size: 25px;
+    padding: 5px;
+}
+
+.list-records {
+    min-height: 50vh;
+    max-height: 50vh;
+    min-width: 950px;
+    max-width: 950px;
+    overflow: scroll;
+    background: white;
+    box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
+}
+
+.record-list-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    font-family: 'Bubbler One', sans-serif;
+    color: black;
+    font-size: 20px;
+}
+
+.datelog, .record-meal, .record-amount, .record-item{
+    height: 100px;
+    border: 1px solid rgb(247, 243, 243);
+}
+
+.btn-delete {
+    background: #f6c6ea;
+
+} 
+.btn-delete:hover {
+    background: #cdf0ea;
+}
+
+.btn-update{
+    background: #b3e283;
+}
+
+.btn-update:hover {
+    background: #f3c583;
+}
+
+.btn-delete, .btn-update {
+    border-radius: 10px;
+    margin: 5px;
+}
+/* .tb-list-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.tb-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 950px;
+    max-width: 950px;
+
+}
+
+.record-list {
+    display: flex;
+
+} */
 
 /* .header-list {
     display: flex;
@@ -20,10 +123,8 @@
     align-items: center;
 } */
 
-
+/* 
 .record-meal, .record-amount, .record-item, .btn-delete, .btn-update, .tb-meal, .tb-amount, .tb-item, .tb-del, .tb-update, .tb-date, .datelog {
-
-    /* margin-right: 15px; */
     border: 1px solid rgb(220, 216, 216);
     border-radius: 5px;
     padding-left: 10px;
@@ -35,7 +136,7 @@
 }
 .record-item, .tb-item {
     justify-self: flex-start;
-    min-width: 700px;
+    min-width: 400px;
 }
 
 .btn-delete, .btn-update, .tb-del, .tb-update {
@@ -52,8 +153,12 @@
     width: 80px
 }
 
-.tb-date, .datelog {
+.datelog {
     width: 150px;
+}
+
+.tb-date {
+    width: 100%;
 }
 
 .recordshow-list {
@@ -62,3 +167,16 @@
     width: fit-content;
     overflow: scroll;
 }
+
+
+.list-records {
+    min-height: 50vh;
+    max-height: 50vh;
+    min-width: 950px;
+    max-width: 950px;
+    overflow: scroll;
+    background: white;
+    box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
+    margin-left: 150px;
+}
+ */

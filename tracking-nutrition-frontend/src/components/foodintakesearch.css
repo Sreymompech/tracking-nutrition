@@ -12,13 +12,27 @@
     border: 1px solid black;
     border-radius: 12px;
 }
-
+/* food search button */
 .food-search-btn {
     margin-left: 10px;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     border-radius: 12px;
     width: 80px;
     margin-right: 150px;
+    position: relative;
+    display: block;
+    color: white;
+    font-size: 14px;
+    font-family: monospace;
+    border: 2px solid #cdf3a2;
+    overflow: hidden;
+    transition: 1s all ease;
+    background-color: #a03c78;
+
+}
+.food-search-btn:hover {
+    background-color: #01937c;
+    border: 2px solid #ffe459;
 }
 
 .food-search-input {
@@ -40,4 +54,14 @@
     justify-self: flex-end;
     margin-left: 100px;
 }
+
+.log-date {
+    font-family: 'Aladin', cursive;
+    font-size: 25px;
+    color: #a03c78
+}
+
+
+
+
 

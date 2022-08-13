@@ -315,6 +315,7 @@ export const AuthContextProvider = ({ children }) => {
         inTakeCalories,
         logDateList,
         foodListRecord,
+        userURL,
       }}
     >
       {/* children will replace by all components that want to access the value of AuthContext provider */}

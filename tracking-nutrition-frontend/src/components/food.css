@@ -22,13 +22,32 @@
     justify-self: flex-start;
     /* margin-left: 20px; */
     min-width: 700px;
+    background: white;
 }
 
 .btn-add-food, .food-action {
-    display: flex;
-    justify-self: flex-end;
+
     width: 70px;
-    align-items: center;
+
 }
+
+.food-action {
+    background: white;
+}
+
+.btn-add-food {
+    background: #cdf0ea;
+    border-radius: 10px;
+
+}
+
+.btn-add-food:hover {
+    background: #f3c583;
+}
+
+.food-action, .response-item {
+    background: #cdf0ea;
+}
+
 
 

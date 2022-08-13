@@ -72,45 +72,52 @@ const Record = (props) => {
   };
 
   return (
-    <div className="record-list">
+    <div className="record-list-container">
       <div>
-        <button className="btn-delete" onClick={onDeleteFood}>
-          Delete
-        </button>
-      </div>
-      <div>
-        <button className="btn-update" onClick={onUpdateFood}>
-          Update
-        </button>
-      </div>{" "}
-      <div className="datelog">{formatedlogdate}</div>
-      <div className="record-meal">
-        <select id="sort-button" onChange={(e) => setMealType(e.target.value)}>
-          <option value="" key="">
-            select
-          </option>
-          <option value="Breakfast" key="">
-            Breakfast
-          </option>
-          <option value="Lunch" key="">
-            Lunch
-          </option>
-          <option value="Dinner" key="">
-            Dinner
-          </option>
-          <option value="Snacks" key="">
-            Snacks
-          </option>
-        </select>
-      </div>
-      <input
-        type="text"
-        className="record-amount"
-        value={amount}
-        onChange={(event) => setAmount(event.target.value)}
-      />
-      <div className="record-item">
-        {`${props.item_name} (${props.brand_name})`}{" "}
+        <div className="record-list-content">
+          <div>
+            <button className="btn-delete" onClick={onDeleteFood}>
+              Delete
+            </button>
+          </div>
+          <div>
+            <button className="btn-update" onClick={onUpdateFood}>
+              Update
+            </button>
+          </div>{" "}
+          <div className="datelog">{formatedlogdate}</div>
+          <div className="record-meal">
+            <select
+              id="sort-button"
+              onChange={(e) => setMealType(e.target.value)}
+            >
+              <option value="" key="">
+                select
+              </option>
+              <option value="Breakfast" key="">
+                Breakfast
+              </option>
+              <option value="Lunch" key="">
+                Lunch
+              </option>
+              <option value="Dinner" key="">
+                Dinner
+              </option>
+              <option value="Snacks" key="">
+                Snacks
+              </option>
+            </select>
+          </div>
+          <input
+            type="text"
+            className="record-amount"
+            value={amount}
+            onChange={(event) => setAmount(event.target.value)}
+          />
+          <div className="record-item">
+            {`${props.item_name} (${props.brand_name})`}{" "}
+          </div>
+        </div>
       </div>
     </div>
   );

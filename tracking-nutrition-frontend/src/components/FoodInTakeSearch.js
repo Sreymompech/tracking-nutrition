@@ -4,6 +4,8 @@ import "./foodintakesearch.css";
 import FoodsList from "./FoodsList";
 import { UserAuth } from "../context/AuthContext";
 import FoodRecordList from "./FoodRecordList";
+import FoodInTakeSearchWelcome from "./FoodInTakeSearchWelcome";
+import FoodInTakeSearchError from "./FoodInTakeSearchError";
 
 const FoodInTakeSearch = () => {
   // keep tracking the what type of food that user want to search
@@ -14,18 +16,20 @@ const FoodInTakeSearch = () => {
   const [logDate, setLogDate] = useState("");
   // keep tracking visible record form
   const [visibleRecordForm, setVisibleRecordForm] = useState(false);
+  //keep tracking state to show welcome page
+  const [showIntakeFoodWelcome, setShowIntakeFoodWelcome] = useState(true);
+  // keep tracking state to show Error page
+  const [showIntakeFoodError, setShowIntakeFoodError] = useState(false);
   // URL for calling food api from backend
   const foodURL = "http://127.0.0.1:5000/foods";
   // URL for adding user record of food
   const recordFoodURL = "http://127.0.0.1:5000/users";
 
-  const { googleUser, existUser, eachUserRecordData, fetchUserRecord } =
-    UserAuth();
+  const { existUser, fetchUserRecord } = UserAuth();
 
   // function to update food when user input
   const updateSearchFood = (event) => {
     setFoodSearchForm(event.target.value);
-    console.log("eachUserRecordData", eachUserRecordData);
   };
 
   // function to update log date
@@ -38,6 +42,9 @@ const FoodInTakeSearch = () => {
       .get(`${foodURL}/${foodQuery}`)
       .then((response) => {
         const responseFood = [...response.data.hits];
+        if (responseFood.length === 0) {
+          setShowIntakeFoodError(true);
+        }
         console.log("responseFood", responseFood);
         const foodData = responseFood.map((food) => {
           return {
@@ -58,11 +65,11 @@ const FoodInTakeSearch = () => {
 
   // search food function
   const onSearchFood = () => {
-    console.log("foodSearchForm", foodSearchForm);
     searchFood(foodSearchForm);
     setFoodSearchForm("");
-    console.log("exist user", existUser);
-    console.log("google user", googleUser);
+    setVisibleRecordForm(false);
+    setShowIntakeFoodWelcome(false);
+    setShowIntakeFoodError(false);
   };
 
   // adding selected food in our database
@@ -70,10 +77,10 @@ const FoodInTakeSearch = () => {
     axios
       .post(`${recordFoodURL}/${existUser.id}/records`, newFood)
       .then((response) => {
-        console.log("add food", response);
         fetchUserRecord(existUser.id);
         setResponseFoodData([]);
         setVisibleRecordForm(true);
+        // setShowIntakeFoodWelcome(false);
         alert("Food record was successfully created");
       })
       .catch((error) => {
@@ -108,27 +115,11 @@ const FoodInTakeSearch = () => {
             placeholder="Enter Food"
           />
         </div>
-        <div>
-          <button className="food-search-btn" onClick={onSearchFood}>
+        <div className="search-btn-container">
+          <button className="food-search-btn btn" onClick={onSearchFood}>
             Search
           </button>
         </div>
-        {/* <div className="filter-container">
-          <select id="filter-button">
-            <option value="" key="">
-              Filter record
-            </option>
-            <option value="all" key="all">
-              All
-            </option>
-            <option value="log_date" key="log_date">
-              Date
-            </option>
-            <option value="meal_type" key="meal_type">
-              Meal
-            </option>
-          </select>
-        </div> */}
       </div>
       {responseFoodData.length > 0 && (
         <FoodsList
@@ -138,6 +129,8 @@ const FoodInTakeSearch = () => {
         />
       )}
       {visibleRecordForm && <FoodRecordList recordFoodURL={recordFoodURL} />}
+      {showIntakeFoodWelcome && <FoodInTakeSearchWelcome />}
+      {showIntakeFoodError && <FoodInTakeSearchError />}
     </div>
   );
 };

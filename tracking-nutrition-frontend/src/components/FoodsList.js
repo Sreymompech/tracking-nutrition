@@ -24,7 +24,7 @@ const FoodsList = (props) => {
         <div className="food-action">Action</div>
         <div className="response-item">Item</div>
       </div>
-      <div>{foodComponents}</div>
+      <div className="component-food">{foodComponents}</div>
     </div>
   );
 };
