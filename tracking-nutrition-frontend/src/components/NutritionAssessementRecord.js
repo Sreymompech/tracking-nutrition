@@ -31,7 +31,7 @@ const NutritionAssessementRecord = (props) => {
           <div className="empty"></div>
           <div className="asses-nutri-fat">Total Fats</div>
           <div className="asses-report-fat"> {props.totalFats}</div>
-          <div className="asses-fat-goal">{props.existUser.fat_goal}</div>
+          <div className="asses-fat-goal">{existUser.fat_goal}</div>
           <div
             className={
               props.fatsAss === "In Range"

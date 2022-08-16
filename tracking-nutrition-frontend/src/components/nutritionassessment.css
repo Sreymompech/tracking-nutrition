@@ -8,9 +8,7 @@
     background: white;
     box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.3);
 }
-    
 
-/* , .asses-report-container */
 
 .nutri-asses-report {
     text-align: center;
@@ -95,8 +93,6 @@
 .asses-report-cal, .asses-report-fat, .asses-cal-goal, .asses-cal-diff, .asses-fat-goal, .asses-fat-diff {
     width: 150px;
     text-align: center;
-    
-    /* text-align: center; */
 }
 
 .asse-date,  .asse-intake, .asse-goal, .asse-diff, .asse-assessement, .asse-nutrition, .asses-report-date {

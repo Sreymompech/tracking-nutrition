@@ -1,4 +1,4 @@
-/*for ReportByDateList */
+
 .selected-date-container {
     display: flex;
     flex-direction: column;
@@ -7,8 +7,6 @@
     position: relative;
     min-width: 950px;
     max-width: 950px;
- 
-
 }
 
 .reportdate-report {
@@ -175,7 +173,7 @@
 }
 
 
-/* for ReportByDate */
+
 
 .selecteddate-list-container {
     display: flex;

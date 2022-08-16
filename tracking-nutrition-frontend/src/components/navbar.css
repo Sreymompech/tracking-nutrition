@@ -1,11 +1,8 @@
 .navLink {
-    /* background: rgb(176,141,30, 0.5);
-    background: linear-gradient(90deg, rgba(176,141,30,0.76087759322479) 0%, rgba(106,204,219,1) 67%, rgba(162,208,218,1) 100%) */
+
     background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.8)), url("https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&w=1200");
     background-repeat: no-repeat;
     background-size: cover;
-
-    
 }
 
 .navLink1 {
@@ -13,9 +10,6 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-/* background: rgb(169,227,188);
-    background: linear-gradient(90deg, rgba(169,227,188,1) 0%, rgba(208,194,52,0.7917367630646008) 48%, rgba(172,224,176,1) 100%); */
 
 .user-profile {
     display: flex;
@@ -129,22 +123,10 @@
 .nav-link:hover {
     background-color: #B5FFD9;
     color: #FFBF86;
-    /* box-shadow: 0 5px 10px #B5FFD9, 0 0 20px #FFBF86, 0 0 40px #B5FFD9, 0 0 60px #FFBF86; */
     border-radius: 25px;
     box-shadow: -30px 30px 20px rgba(82, 75, 75, 0.3);
-    /* box-shadow: -30px 30px 20px #B5FFD9, 0 0 20px #FFBF86, 0 0 40px #B5FFD9, 0 0 60px #FFBF86; */
 } 
 
-/* .link-container {
-    background-color: lavender;
-    padding: 10px 15px;
-    border-radius: 12px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-} 
-
-
-
-/* nutrition logo for  text change */
 
 .nav-nutri-logo {
     margin-left: 10px;
@@ -199,7 +181,6 @@
     border-image-slice: 1;
 }
 
-/* navbar center */
 
 .nav-container {
     background: transparent;
@@ -229,7 +210,6 @@
     letter-spacing: 0.1em;
     padding: 8px;
     transition: 0.5s;
-    /* box-shadow: 0 60px 40px -7px rgb(0, 0, 0, 0.2); */
     margin: 10px;
     box-shadow: -30px 30px 20px rgba(82, 75, 75, 0.3);
     
@@ -243,7 +223,6 @@
     box-shadow: 0 0 35px var(--clr);
     border: 2px solid var(--clr);
     box-shadow: -30px 30px 20px rgba(82, 75, 75, 0.3);
-    /* box-shadow: -30px 30px 20px var(--clr); */
     border-radius: 5px;
 }
 

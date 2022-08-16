@@ -20,7 +20,6 @@
 }
 .food-content, .response-item {
     justify-self: flex-start;
-    /* margin-left: 20px; */
     min-width: 700px;
     background: white;
 }

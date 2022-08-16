@@ -7,15 +7,8 @@ import Report from "./pages/Report";
 import { AuthContextProvider } from "./context/AuthContext";
 import Navbar from "./components/Navbar";
 import Protected from "./components/Protected";
-// import { useEffect } from "react";
-// import { UserAuth } from "./context/AuthContext";
 
 function App() {
-  // const { fetchUserRecord, existUser } = UserAuth();
-
-  // useEffect(() => {
-  //   fetchUserRecord(existUser.id);
-  // }, [existUser.id]);
   return (
     <div className="App">
       <AuthContextProvider>
