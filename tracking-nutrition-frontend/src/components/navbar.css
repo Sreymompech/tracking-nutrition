@@ -59,10 +59,9 @@
     margin-top: 20px;
     font-weight: bold;
     box-shadow: -30px 30px 20px rgba(82, 75, 75, 0.3);
-    border-radius: 25px;  
-    font-family: 'Bubbler One', sans-serif;
-    font-size: 20px;  
-    
+    border-radius: 15px;  
+    font-size: 17px;  
+    font-family: 'Aladin', cursive;
 }
 
 .span-animate {
@@ -175,6 +174,31 @@
     
 }
 
+.nav-nutri-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-nutri-logo1 {
+    text-align: center;
+    align-self: center;
+    justify-self: center;
+    font-size: 50px;
+    position: relative;
+    z-index: 0;
+    border-radius: 3px;
+    font-family: 'Aladin', cursive;
+    font-weight: bold;
+    border-bottom: 2px solid white;
+
+    background-image: url('https://images.pexels.com/photos/3631430/pexels-photo-3631430.jpeg?auto=compress&cs=tinysrgb&w=1200');
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: animate 10s infinite linear;
+    border-image: linear-gradient(to right,#ff0062,#00ffff) round;
+    border-image-slice: 1;
+}
+
 /* navbar center */
 
 .nav-container {
@@ -220,7 +244,7 @@
     border: 2px solid var(--clr);
     box-shadow: -30px 30px 20px rgba(82, 75, 75, 0.3);
     /* box-shadow: -30px 30px 20px var(--clr); */
-    border-radius: 20px;
+    border-radius: 5px;
 }
 
 .nav-center::before {

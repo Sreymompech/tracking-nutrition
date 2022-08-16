@@ -4,7 +4,16 @@ import Record from "./Record";
 import "./record.css";
 
 const FoodRecordList = (props) => {
-  const { eachUserRecordData } = UserAuth();
+  const {
+    eachUserRecordData,
+    foodRecordByDate,
+    fetchFoodRecordByDate,
+    existUser,
+  } = UserAuth();
+
+  // useEffect(() => {
+  //   fetchFoodRecordByDate(existUser.id, props.selectedDateLog);
+  // }, [existUser.id, props.selectedDateLog]);
 
   const recordDataComponent = eachUserRecordData.map((record, index) => {
     return (
@@ -21,6 +30,7 @@ const FoodRecordList = (props) => {
         total_fat={record.total_fat}
         user_id={record.user_id}
         recordFoodURL={props.recordFoodURL}
+        selectedDateLog={props.selectedDateLog}
       />
     );
   });

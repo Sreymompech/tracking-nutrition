@@ -134,16 +134,18 @@ def validate_key_login():
 
 def validate_key_profile():
     request_user = request.get_json()
-    if "dob" in request_user and "gender" in request_user and "height" and request_user and "weight" in request_user:
+    if "dob" in request_user and "gender" in request_user and "height_inches" in request_user and "weight_pound" in request_user and "name" in request_user:
         return request_user
     if "dob" not in request_user:
         abort(make_response({"message": "dob is invalid"}, 400))
     elif "gender" not in request_user:
         abort(make_response({"message": "gender is invalid"}, 400))
-    elif "height" not in request_user:
+    elif "height_inches" not in request_user:
         abort(make_response({"message": "height is invalid"}, 400))
-    elif "weight" not in request_user:
+    elif "weight_pound" not in request_user:
         abort(make_response({"message": "weight is invalid"}, 400))
+    elif "name" not in request_user:
+        abort(make_response({"message": "name is invalid"}, 400))
     
 
 # def sort_or_filter_user():

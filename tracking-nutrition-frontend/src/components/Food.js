@@ -8,8 +8,12 @@ const Food = (props) => {
   const formatedlogdate = moment(props.dateLog, "YYYY-MM-DD").format(
     "MM/DD/YYYY"
   );
+  // const formatedlogdate = moment(props.dateLog, "YYYY-MM-DD").format(
+  //   "%Y-%m-%dT%H:%M:%S.%fZ"
+  // );
 
   const addFood = () => {
+    console.log("log date convert", formatedlogdate);
     const newFood = {
       log_date: formatedlogdate,
       item_name: props.item_name,

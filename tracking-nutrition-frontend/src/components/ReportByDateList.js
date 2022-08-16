@@ -5,7 +5,7 @@ import { UserAuth } from "../context/AuthContext";
 import "./reportbydate.css";
 
 const ReportByDateList = (props) => {
-  const { caloriesGoal } = UserAuth();
+  const { caloriesGoal, existUser } = UserAuth();
   const recordByDateComponent = props.recordByDate["records"].map(
     (record, index) => {
       return (
@@ -60,7 +60,7 @@ const ReportByDateList = (props) => {
               {props.recordByDate.totalCals}
             </div>
             <div className="selecteddate-cal-goal">
-              {Number(caloriesGoal).toFixed(2)}
+              {Number(existUser.cal_goal).toFixed(2)}
             </div>
             <div
               className={
@@ -83,7 +83,8 @@ const ReportByDateList = (props) => {
               {props.recordByDate.totalFats}
             </div>
             <div className="selecteddate-fat-goal">
-              {props.recordByDate.fatsGoal}
+              {/* {props.recordByDate.fatsGoal} */}
+              {existUser.fat_goal}
             </div>
             <div
               className={

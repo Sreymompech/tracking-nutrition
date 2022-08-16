@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { UserAuth } from "../context/AuthContext";
-// import MyFoodReport from "./MyFoodReport";
-// import NutritionAssessementList from "../components/NutritionAssessementList";
 import ProfileHeader from "../components/ProfileHeader";
 import "./myfoodlistreport.css";
 import MyFoodReportList from "./MyFoodReportList";
 
 const MyFoodListReport = (props) => {
   const { fetchUserRecord, existUser, foodListRecord } = UserAuth();
-  // fetchUserRecord(existUser.id);
   useEffect(() => {
     fetchUserRecord(existUser.id);
   }, []);

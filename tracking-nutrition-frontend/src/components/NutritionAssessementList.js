@@ -5,16 +5,11 @@ import NutritionAssessementRecord from "./NutritionAssessementRecord";
 import "./nutritionassessment.css";
 
 const NutritionionAssessementList = (props) => {
-  const {
-    existUser,
-    inTakeCalories,
-    logDateList,
-    caloriesGoal,
-    fetchUserRecord,
-  } = UserAuth();
+  const { existUser, inTakeCalories, fetchUserRecord } = UserAuth();
   useEffect(() => {
     fetchUserRecord(existUser.id);
-  }, [inTakeCalories]);
+  }, []);
+  console.log("nutritionassessmentlig exist user", existUser);
 
   const nutritionComponent = inTakeCalories.map((record, index) => {
     return (
@@ -49,13 +44,8 @@ const NutritionionAssessementList = (props) => {
         <div className="asse-assessement">Assessement</div>
       </div>
       <div className="asses-report-list">{nutritionComponent}</div>
-      {/* {nutritionComponent} */}
     </div>
   );
 };
 
 export default NutritionionAssessementList;
-
-{
-  /* <div className="asses-report-list"></div> */
-}

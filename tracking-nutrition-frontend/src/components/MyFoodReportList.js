@@ -4,8 +4,7 @@ import { UserAuth } from "../context/AuthContext";
 import myfoodlistreport from "./myfoodlistreport.css";
 
 const MyFoodReportList = (props) => {
-  const { fetchUserRecord, existUser, eachUserRecordData } = UserAuth();
-  // fetchUserRecord(existUser.id);
+  const { fetchUserRecord, existUser } = UserAuth();
   useEffect(() => {
     fetchUserRecord(existUser.id);
   }, []);

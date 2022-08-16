@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { UserAuth } from "../context/AuthContext";
 import "./nutritionassessment.css";
 
 const NutritionAssessementRecord = (props) => {
-  const { caloriesGoal } = UserAuth();
+  const { caloriesGoal, existUser } = UserAuth();
 
   return (
     <div className="asses-report-container">
@@ -14,7 +14,7 @@ const NutritionAssessementRecord = (props) => {
           <div className="asses-nutri-cal">Total Calories</div>
           <div className="asses-report-cal">{props.totalCals}</div>
           <div className="asses-cal-goal">
-            {Number(caloriesGoal).toFixed(2)}
+            {Number(existUser.cal_goal).toFixed(2)}
           </div>
           <div
             className={
@@ -31,7 +31,7 @@ const NutritionAssessementRecord = (props) => {
           <div className="empty"></div>
           <div className="asses-nutri-fat">Total Fats</div>
           <div className="asses-report-fat"> {props.totalFats}</div>
-          <div className="asses-fat-goal">{props.fatsGoal}</div>
+          <div className="asses-fat-goal">{props.existUser.fat_goal}</div>
           <div
             className={
               props.fatsAss === "In Range"

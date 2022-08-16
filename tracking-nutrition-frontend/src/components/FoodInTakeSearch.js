@@ -6,6 +6,7 @@ import { UserAuth } from "../context/AuthContext";
 import FoodRecordList from "./FoodRecordList";
 import FoodInTakeSearchWelcome from "./FoodInTakeSearchWelcome";
 import FoodInTakeSearchError from "./FoodInTakeSearchError";
+import FoodInTakeSearchLogDateMissingError from "./FoodInTakeSearchLogDateMissingError";
 
 const FoodInTakeSearch = () => {
   // keep tracking the what type of food that user want to search
@@ -20,12 +21,14 @@ const FoodInTakeSearch = () => {
   const [showIntakeFoodWelcome, setShowIntakeFoodWelcome] = useState(true);
   // keep tracking state to show Error page
   const [showIntakeFoodError, setShowIntakeFoodError] = useState(false);
+  // keep tracking state to show error when log date is empty
+  const [showLogDateMissing, setShowLogDateMissing] = useState(false);
   // URL for calling food api from backend
   const foodURL = "http://127.0.0.1:5000/foods";
   // URL for adding user record of food
   const recordFoodURL = "http://127.0.0.1:5000/users";
 
-  const { existUser, fetchUserRecord } = UserAuth();
+  const { existUser, fetchUserRecord, googleUser } = UserAuth();
 
   // function to update food when user input
   const updateSearchFood = (event) => {
@@ -42,7 +45,7 @@ const FoodInTakeSearch = () => {
       .get(`${foodURL}/${foodQuery}`)
       .then((response) => {
         const responseFood = [...response.data.hits];
-        if (responseFood.length === 0) {
+        if (responseFood.length === 0 || !foodSearchForm) {
           setShowIntakeFoodError(true);
         }
         console.log("responseFood", responseFood);
@@ -65,7 +68,12 @@ const FoodInTakeSearch = () => {
 
   // search food function
   const onSearchFood = () => {
-    searchFood(foodSearchForm);
+    if (!logDate) {
+      setShowLogDateMissing(true);
+    } else {
+      searchFood(foodSearchForm);
+      setShowLogDateMissing(false);
+    }
     setFoodSearchForm("");
     setVisibleRecordForm(false);
     setShowIntakeFoodWelcome(false);
@@ -74,19 +82,21 @@ const FoodInTakeSearch = () => {
 
   // adding selected food in our database
   const addFood = (newFood) => {
-    axios
-      .post(`${recordFoodURL}/${existUser.id}/records`, newFood)
-      .then((response) => {
-        fetchUserRecord(existUser.id);
-        setResponseFoodData([]);
-        setVisibleRecordForm(true);
-        // setShowIntakeFoodWelcome(false);
-        alert("Food record was successfully created");
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Oop could not add food record");
-      });
+    if (googleUser["providerData"][0].uid === existUser.login_id) {
+      axios
+        .post(`${recordFoodURL}/${existUser.id}/records`, newFood)
+        .then((response) => {
+          fetchUserRecord(existUser.id);
+          setResponseFoodData([]);
+          setVisibleRecordForm(true);
+          // setShowIntakeFoodWelcome(false);
+          alert("Food record was successfully created");
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("Oop could not add food record");
+        });
+    }
   };
 
   return (
@@ -128,9 +138,15 @@ const FoodInTakeSearch = () => {
           addFoodCallback={addFood}
         />
       )}
-      {visibleRecordForm && <FoodRecordList recordFoodURL={recordFoodURL} />}
+      {visibleRecordForm && (
+        <FoodRecordList
+          recordFoodURL={recordFoodURL}
+          selectedDateLog={logDate}
+        />
+      )}
       {showIntakeFoodWelcome && <FoodInTakeSearchWelcome />}
       {showIntakeFoodError && <FoodInTakeSearchError />}
+      {showLogDateMissing && <FoodInTakeSearchLogDateMissingError />}
     </div>
   );
 };

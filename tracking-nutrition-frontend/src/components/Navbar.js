@@ -4,14 +4,17 @@ import "./navbar.css";
 import NavbarLink from "./NavbarLink";
 
 const Navbar = () => {
-  const { googleUser, logOut } = UserAuth();
-
+  const { googleUser, logOut, existUser } = UserAuth();
+  console.log("nav exist user", existUser);
+  console.log("nave google user", googleUser);
   const handleSignOut = async () => {
     try {
       await logOut();
     } catch (error) {
       console.log(error);
     }
+    localStorage.removeItem("existUser");
+    console.log("log out exist user", existUser);
   };
 
   return (
@@ -23,7 +26,13 @@ const Navbar = () => {
       }
     >
       <div>
-        <div className="nav-nutri-logo">Nutritions Tracking</div>
+        {googleUser?.displayName ? (
+          <div className="nav-nutri-logo">Nutritions Tracking</div>
+        ) : (
+          <div className="nav-nutri-logo-container">
+            <div className="nav-nutri-logo1">Nutritions Tracking</div>
+          </div>
+        )}
       </div>
       <div className="nav-container">
         <div className="navbar">
@@ -37,7 +46,7 @@ const Navbar = () => {
             <div className="user-picture">
               <img src={`${googleUser?.photoURL}`} alt="" />
             </div>
-            <div className="nav-user">{googleUser?.displayName}</div>
+            <div className="nav-user">{existUser.name}</div>
           </div>
         ) : (
           ""

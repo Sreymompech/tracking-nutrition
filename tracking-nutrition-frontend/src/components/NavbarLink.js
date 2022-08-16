@@ -17,26 +17,14 @@ const NavbarLink = () => {
       <Link to="/profile" className="nav-center" style={color1}>
         <span>Profile</span>
         <i></i>
-        {/* <span className="span-animate"></span>
-        <span className="span-animate"></span>
-        <span className="span-animate"></span>
-        <span className="span-animate"></span> */}
       </Link>
       <Link to="/foodintake" className="nav-center" style={color2}>
         <span>FoodInTake</span>
         <i></i>
-        {/* <span className="span-animate"></span>
-        <span className="span-animate"></span>
-        <span className="span-animate"></span>
-        <span className="span-animate"></span> */}
       </Link>
       <Link to="/report" className="nav-center" style={color3}>
         <span>Reports</span>
         <i></i>
-        {/* <span className="span-animate"></span>
-        <span className="span-animate"></span>
-        <span className="span-animate"></span>
-        <span className="span-animate"></span> */}
       </Link>
     </div>
   );

@@ -32,7 +32,7 @@
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.1);
-    transform: rotate(-10deg) skewY(-10deg);
+    /* transform: rotate(-10deg) skewY(-10deg); */
 
     
 } 
@@ -247,8 +247,27 @@
 }
 
 
+/* for validation */
 
+.errors, .errors1, .errors2 {
+    color: #ff0062;
+    font-size: 14px;
+}
 
+.errors1 {
+    margin-left: 60px;
+}
+
+.weight-input-container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.label-weight {
+    justify-self: flex-start;
+    align-self: flex-start;
+}
 
 
 

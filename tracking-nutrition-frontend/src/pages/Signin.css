@@ -104,6 +104,7 @@ section .color:nth-child(3) {
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    
 }
 
 
@@ -209,10 +210,12 @@ section .color:nth-child(3) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    animation: animate 10s linear infinite;
-    animation-delay: calc(-1s * var(--i));
+    animation: sigin 10s linear infinite;
+    
+    /* animation-delay: calc(-1s * var(--i)); */
+    /* animation-delay: calc(-1s * 2) */
 }
-@keyframes animate {
+@keyframes sigin {
     0%, 100%{
         transform: translateY(-40px);
     }
@@ -226,6 +229,10 @@ section .color:nth-child(3) {
     right: -60px;
     width: 100px;
     height: 100px;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)), url("https://images.pexels.com/photos/628776/pexels-photo-628776.jpeg?auto=compress&cs=tinysrgb&w=800");
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation-delay: 0s;
 }
 
 .box .square:nth-child(2) {
@@ -233,7 +240,11 @@ section .color:nth-child(3) {
     left: -100px;
     width: 120px;
     height: 120px;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)), url("https://images.pexels.com/photos/3763426/pexels-photo-3763426.jpeg?auto=compress&cs=tinysrgb&w=1200");
+    background-repeat: no-repeat;
+    background-size: cover;
     z-index: 2;
+    animation-delay: 1s;
 }
 
 .box .square:nth-child(3) {
@@ -241,7 +252,11 @@ section .color:nth-child(3) {
     right: -60px;
     width: 80px;
     height: 80px;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)), url("https://images.pexels.com/photos/1860204/pexels-photo-1860204.jpeg?auto=compress&cs=tinysrgb&w=800");
+    background-repeat: no-repeat;
+    background-size: cover;
     z-index: 2;
+    animation-delay: 2s;
 }
 
 .box .square:nth-child(4) {
@@ -249,6 +264,7 @@ section .color:nth-child(3) {
     left: 100px;
     width: 50px;
     height: 50px;
+    animation-delay: 3s;
 }
 
 .box .square:nth-child(5) {
@@ -256,8 +272,122 @@ section .color:nth-child(3) {
     left: 140px;
     width: 60px;
     height: 60px;
+    animation-delay: 4s;
+    
 }
 
+.box .square:nth-child(6) {
+    top: -140px;
+    left: -500px;
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)), url("../images/istockphoto-1086092570-612x612.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: picture 10s linear infinite;
+}
+
+@keyframes picture {
+    0%, 100%{
+        transform: translateX(-40px);
+    }
+    50% {
+        transform: translateX(40px);
+    }
+}
+
+
+.box .square:nth-child(7) {
+    bottom: -100px;
+    left: -300px;
+    width: 110px;
+    height: 110px;
+    border-radius: 10px;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)), url("../images/istockphoto-610256864-612x612.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: picture1 10s linear infinite;
+}
+
+@keyframes picture1 {
+    0%, 100%{
+        transform: translateX(60px);
+    }
+    50% {
+        transform: translateX(-60px);
+    }
+}
+
+.box .square:nth-child(8) {
+    top: -150px;
+    right: -500px;
+    width: 110px;
+    height: 110px;
+    border-radius: 10px;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)), url("../images/istockphoto-1334636844-612x612.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: picture2 10s linear infinite;
+}
+
+@keyframes picture2 {
+    0%, 100%{
+        transform: translateX(-100px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+}
+
+.box .square:nth-child(9) {
+    bottom: -150px;
+    right: -400px;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2)), url("https://images.pexels.com/photos/3620705/pexels-photo-3620705.jpeg?auto=compress&cs=tinysrgb&w=1200");
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: picture3 10s linear infinite;
+}
+
+@keyframes picture3 {
+    0%, 100%{
+        transform: translateX(80px);
+    }
+    50% {
+        transform: translateX(-20px);
+    }
+}
+
+.box .square:nth-child(10) {
+    bottom: 110px;
+    right: -350px;
+    width: 40px;
+    height: 40px;
+    animation-delay: 3s;
+}
+
+.box .square:nth-child(11) {
+    top: 100px;
+    left: -400px;
+    width: 40px;
+    height: 40px;
+    animation-delay: 4s;
+    
+}
+
+.box .square:nth-child(12) {
+    bottom: -100px;
+    left: -520px;
+    width: 40px;
+    height: 40px;
+    animation-delay: 4s;
+    
+}
+
+/* google login button */
 .google-btn {
     font-size: 2rem;
     display: flex;
@@ -274,6 +404,8 @@ section .color:nth-child(3) {
     box-shadow: inset 0 0 0.5em 0 rgb(235, 177, 68), 0 0 0.5em 0 rgb(235, 177, 68);
     position: relative;
     width: fit-content;
+    position: absolute;
+    top: 100px;
 }
 
 .google-btn::before {
@@ -330,3 +462,71 @@ opacity: 1;
     background-size: cover;
 
 }
+
+/* for picture display */
+
+.pic-container {
+    position: absolute;
+    top: 70px;
+    left: 270px;
+    width: 250px;
+    height: fit-content;
+    font-size: 20px;
+    box-shadow: -30 50px 35px rgba(0, 0, 0, 0.1);
+    font-family: 'Bubbler One', sans-serif;
+    color: rgb(247, 243, 243);
+    z-index: 190;
+}
+
+.pic-container .pic1{
+    transform: rotate(-5deg) skewY(-20deg);
+}
+
+.pic-container .pic2{
+    margin-top: 40px;
+    transform: rotate(-15deg) skewX(-25deg);
+}
+
+.pic-container .pic3{
+    margin-top: 30px;
+    transform: rotate(-15deg) skewX(25deg);
+}
+
+
+.pic-container1 {
+    position: absolute;
+    top: 400px;
+    left: 100px;
+    width: 250px;
+    height: fit-content;
+    font-size: 20px;
+    color: #fff;
+    z-index: 270;
+}
+
+
+.pic-container2 {
+    position: absolute;
+    right: 100px;
+    bottom: 350px;
+    font-size: 20px;
+    color: #fff;
+    z-index: 240;
+    
+}
+
+.pic-container2 .pic7, .pic-container2 .pic8,  .pic-container2 .pic6, .pic-container1 .pic4, .pic-container1 .pic5, .pic-container .pic1, .pic-container .pic2, .pic-container .pic3, .formdes  {
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.pic-container2 .pic7, .pic-container2 .pic8 {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.formdes {
+    text-align: center;
+    color: #fff;
+    z-index: 100px;
+}
+

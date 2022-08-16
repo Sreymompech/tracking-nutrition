@@ -55,20 +55,29 @@ def create_user_login():
 
 
 # create user profile
-@users_bp.route("/<user_id>", methods=["PUT", "PATCH"])
+@users_bp.route("/<user_id>", methods=["PATCH"])
 @cross_origin()
 def create_profile(user_id):
     exist_user = get_user_or_abort(user_id)
     request_user = validate_key_profile()
-    height_split = request_user["height"].split()
+    print(request_user)
+    height_split = request_user["height_inches"].split()
     height_inches = (int(height_split[0]) * 12) + int(height_split[2])
     dob = datetime.strptime(request_user["dob"], "%m/%d/%Y")
 
-    if exist_user:
-        exist_user.dob = dob,
-        exist_user.gender = request_user["gender"].capitalize(),
-        exist_user.height_inches = height_inches,
-        exist_user.weight_pound = request_user["weight"]
+    if request_user["gender"].capitalize() == "Male" or request_user["gender"].capitalize() == "M":
+        if "cal_goal" not in request_user and "fat_goal" not in request_user: 
+            exist_user.cal_goal = 2500
+            exist_user.fat_goal = 2500 * 0.3
+    else:
+        if "cal_goal" not in request_user and "fat_goal" not in request_user:
+            exist_user.cal_goal = 2000
+            exist_user.fat_goal = 2000 * 0.3
+    exist_user.name = request_user["name"]
+    exist_user.dob = dob,
+    exist_user.gender = request_user["gender"].capitalize(),
+    exist_user.height_inches = height_inches,
+    exist_user.weight_pound = request_user["weight_pound"]
     
     db.session.add(exist_user)
     db.session.commit()
@@ -202,6 +211,7 @@ def create_record_belong_user(user_id):
         register_at = datetime.now()
         request_record["user_id"] = user_id
 
+    # "%m/%d/%Y" "%b %d %Y %H:%M:%S" "%Y-%m-%dT%H:%M:%S.%fZ" "%a %b %d %H:%M:%S %Y %Y-%m-%dT%H:%M:%S.%fZ"
     if chosen_user or len(chosen_user.records) == 0:
         new_record = Record(
             log_date = datetime.strptime(request_record["log_date"], "%m/%d/%Y"),

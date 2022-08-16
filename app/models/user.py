@@ -18,6 +18,8 @@ class User(db.Model, UserMixin):
     gender = db.Column(db.String)
     height_inches = db.Column(db.String)
     weight_pound = db.Column(db.Integer)
+    cal_goal = db.Column(db.Integer)
+    fat_goal = db.Column(db.Integer)
     records = db.relationship("Record", backref="user", lazy=True)
 
     def response_user_profile(self):
@@ -31,7 +33,9 @@ class User(db.Model, UserMixin):
             "picture": self.picture,
             "gender": self.gender,
             "height_inches": self.height_inches,
-            "weight_pound": self.weight_pound
+            "weight_pound": self.weight_pound,
+            "cal_goal": self.cal_goal,
+            "fat_goal": self.fat_goal
         }
 
     @staticmethod

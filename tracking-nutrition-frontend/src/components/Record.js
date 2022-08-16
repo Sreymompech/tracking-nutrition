@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./record.css";
 import axios from "axios";
 import { UserAuth } from "../context/AuthContext";
@@ -7,7 +7,8 @@ import moment from "moment";
 
 // intake page for food record
 const Record = (props) => {
-  const { googleUser, existUser, fetchUserRecord } = UserAuth();
+  const { googleUser, existUser, fetchUserRecord, fetchFoodRecordByDate } =
+    UserAuth();
   const [mealType, setMealType] = useState("");
   const [amount, setAmount] = useState("");
   // convert log_date to string
@@ -27,7 +28,7 @@ const Record = (props) => {
       )
       .then((response) => {
         console.log("update food", response);
-        fetchUserRecord(existUser.id);
+
         alert("Food record was successfully updated");
       })
       .catch((error) => {
@@ -46,6 +47,8 @@ const Record = (props) => {
     };
     if (googleUser["providerData"][0].uid === existUser.login_id) {
       updateFood(foodInfo);
+      fetchUserRecord(existUser.id);
+      // fetchFoodRecordByDate(existUser.id, props.selectedDateLog);
     }
   };
 
@@ -55,7 +58,7 @@ const Record = (props) => {
       .delete(`${props.recordFoodURL}/${existUser.id}/records/${record_id}`)
       .then((response) => {
         console.log("update food", response);
-        fetchUserRecord(existUser.id);
+        // fetchUserRecord(existUser.id);
         alert("Food record was successfully deleted");
       })
       .catch((error) => {
@@ -68,6 +71,8 @@ const Record = (props) => {
   const onDeleteFood = () => {
     if (googleUser["providerData"][0].uid === existUser.login_id) {
       deleteFood(props.id);
+      fetchUserRecord(existUser.id);
+      // fetchFoodRecordByDate(existUser.id, props.selectedDateLog);
     }
   };
 

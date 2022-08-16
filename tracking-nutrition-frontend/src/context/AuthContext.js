@@ -13,6 +13,7 @@ import {
 import { auth } from "../firebase-config";
 import axios from "axios";
 import moment from "moment";
+// import { useNavigate } from "react-router-dom";
 
 // create a instance of context
 const AuthContext = createContext();
@@ -41,10 +42,12 @@ export const AuthContextProvider = ({ children }) => {
   const [logDateList, setLogDateList] = useState([]);
   // keep tracking food list by log date record
   const [foodListRecord, setFoodListRecord] = useState([]);
+  // keep tracking food record by date
+  const [foodRecordByDate, setFoodRecordByDate] = useState([]);
   // URL for users route at backend
   const userURL = "http://127.0.0.1:5000/users";
   // URL for calling food api from backend
-  const foodURL = "http://127.0.0.1:5000/foods";
+  // const foodURL = "http://127.0.0.1:5000/foods";
 
   // sign in function
   const googleSignIn = () => {
@@ -65,10 +68,15 @@ export const AuthContextProvider = ({ children }) => {
     axios
       .get(`${userURL}/${user_id}`)
       .then((resp) => {
-        console.log("exist user", resp);
-        const user = { ...resp.data };
-        // set state for exist user
-        localStorage.setItem("existUser", JSON.stringify(user));
+        console.log("exist user fetch by id resp", resp);
+
+        //set state for exist user
+        const loginUser = localStorage.setItem(
+          "existUser",
+          JSON.stringify(resp.data)
+        );
+        setExistUser(loginUser);
+        // localStorage.setItem("existUser", JSON.stringify(resp.data));
         // set stat of calories goal for user
       })
       .catch((err) => {
@@ -101,7 +109,7 @@ export const AuthContextProvider = ({ children }) => {
             user.email === googleUser?.email
           ) {
             fetchUserById(user.id);
-            defineCaloriesGoal(user.gender);
+            // defineCaloriesGoal(user.gender);
             alert("exist user was updated in state");
           }
         }
@@ -118,6 +126,7 @@ export const AuthContextProvider = ({ children }) => {
         const userData = [...response.data];
         console.log("user Data", userData);
         if (userData.length === 0) {
+          console.log("1");
           const newUser = {
             email: loginUser?.email,
             name: loginUser?.displayName,
@@ -125,34 +134,55 @@ export const AuthContextProvider = ({ children }) => {
             login_id: loginUser["providerData"][0].uid,
           };
           createLogInUser(newUser);
-        }
-
-        let confirmUser = false;
-        for (let user of userData) {
-          if (
-            user.login_id === loginUser["providerData"][0].uid &&
-            user.email === loginUser?.email
-          ) {
-            // store exist user into local storage so when the page refresh the existUser state will not empty
-            localStorage.setItem("existUser", JSON.stringify(user));
-            confirmUser = !confirmUser;
-            defineCaloriesGoal(user.gender);
-            alert("Login sucessful");
+        } else {
+          let confirmUser = false;
+          for (let user of userData) {
+            console.log("2");
+            if (
+              user.login_id === loginUser["providerData"][0].uid &&
+              user.email === loginUser?.email
+            ) {
+              setExistUser(user);
+              localStorage.setItem("existUser", JSON.stringify(user));
+              console.log("user login step 2", user);
+              confirmUser = !confirmUser;
+              // defineCaloriesGoal(user.gender);
+              alert("Login sucessful");
+            }
           }
-        }
-        if (confirmUser === false) {
-          const newUser = {
-            email: loginUser?.email,
-            name: loginUser?.displayName,
-            picture: loginUser?.photoURL,
-            login_id: loginUser["providerData"][0].uid,
-          };
-          createLogInUser(newUser);
+          if (confirmUser === false) {
+            console.log("3");
+            const newUser = {
+              email: loginUser?.email,
+              name: loginUser?.displayName,
+              picture: loginUser?.photoURL,
+              login_id: loginUser["providerData"][0].uid,
+            };
+            createLogInUser(newUser);
+          }
         }
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  // fetch food record of user by date
+  const fetchFoodRecordByDate = (user_id, date) => {
+    axios
+      .get(`${userURL}/${user_id}/records`)
+      .then((res) => {
+        const newRecord = [...res.data];
+        const recordsList = [];
+        for (let record of newRecord) {
+          if (record.log_date === date) {
+            recordsList.push(record);
+          }
+        }
+        setFoodRecordByDate(recordsList);
+        console.log("foodRecordbydate", foodRecordByDate);
+      })
+      .catch((err) => {});
   };
 
   //fetch user records from database
@@ -174,6 +204,8 @@ export const AuthContextProvider = ({ children }) => {
             total_cals: record.total_cals,
             total_fat: record.total_fat,
             user_id: record.user_id,
+            cal_goal: record.cal_goal,
+            fat_goal: record.fat_goal,
           };
         });
         setEachUserRecordData(newRecords);
@@ -222,27 +254,46 @@ export const AuthContextProvider = ({ children }) => {
           }
 
           // calculate cal diff, fat diff, cal asses, fat assess
-          const calDiff = Number(totalCals - caloriesGoal).toFixed(2);
-          const fatGoal = Number(caloriesGoal * 0.3).toFixed(2);
-          const fatDiff = Number(fatGoal - totalFats).toFixed(2);
+          // const calDiff = Number(totalCals - caloriesGoal).toFixed(2);
+          // const fatGoal = Number(caloriesGoal * 0.3).toFixed(2);
+          // const fatDiff = Number(fatGoal - totalFats).toFixed(2);
+          const calDiff = Number(totalCals - existUser.cal_goal).toFixed(2);
+          const fatDiff = Number(existUser.fat_goal - totalFats).toFixed(2);
 
           let caloriesAss = "";
-          if (totalCals > caloriesGoal + 5) {
+          if (totalCals > existUser.cal_goal + 10) {
             caloriesAss = "Above Goal";
-          } else if (totalCals < caloriesGoal - 5) {
+          } else if (totalCals < existUser.cal_goal - 10) {
             caloriesAss = "Below Goal";
           } else {
             caloriesAss = "In Range";
           }
 
           let fatAss = "";
-          if (totalFats > fatGoal + 5) {
+          if (totalFats > existUser.fat_goal + 5) {
             fatAss = "Above Goal";
-          } else if (totalFats < fatGoal - 5) {
+          } else if (totalFats < existUser.fat_goal - 5) {
             fatAss = "Below Goal";
           } else {
             fatAss = "In Range";
           }
+
+          // if (totalCals > caloriesGoal + 5) {
+          //   caloriesAss = "Above Goal";
+          // } else if (totalCals < caloriesGoal - 5) {
+          //   caloriesAss = "Below Goal";
+          // } else {
+          //   caloriesAss = "In Range";
+          // }
+
+          // let fatAss = "";
+          // if (totalFats > fatGoal + 5) {
+          //   fatAss = "Above Goal";
+          // } else if (totalFats < fatGoal - 5) {
+          //   fatAss = "Below Goal";
+          // } else {
+          //   fatAss = "In Range";
+          // }
 
           caloriesList.push({
             date: date,
@@ -251,7 +302,7 @@ export const AuthContextProvider = ({ children }) => {
             totalRecord: countRecord,
             calsDiff: calDiff,
             fatsDiff: fatDiff,
-            fatsGoal: fatGoal,
+            // fatsGoal: fatGoal,
             calsAss: caloriesAss,
             fatsAss: fatAss,
           });
@@ -275,13 +326,13 @@ export const AuthContextProvider = ({ children }) => {
 
   // working on report route
   // set calories goal by gender
-  const defineCaloriesGoal = (gender) => {
-    if (gender === "Male") {
-      localStorage.setItem("caloriesGoal", JSON.stringify(2500));
-    } else {
-      localStorage.setItem("caloriesGoal", JSON.stringify(2000));
-    }
-  };
+  // const defineCaloriesGoal = (gender) => {
+  //   if (gender === "Male") {
+  //     localStorage.setItem("caloriesGoal", JSON.stringify(2500));
+  //   } else {
+  //     localStorage.setItem("caloriesGoal", JSON.stringify(2000));
+  //   }
+  // };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -294,6 +345,11 @@ export const AuthContextProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   console.log("contex exist user", existUser);
+  //   navigate("/profile");
+  // }, [existUser]);
 
   return (
     // pass all props down in this AuthContex.Provider so you can call it to user any where by import { UserAuth } from "../context/AuthContext";
@@ -316,6 +372,7 @@ export const AuthContextProvider = ({ children }) => {
         logDateList,
         foodListRecord,
         userURL,
+        fetchFoodRecordByDate,
       }}
     >
       {/* children will replace by all components that want to access the value of AuthContext provider */}

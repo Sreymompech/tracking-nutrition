@@ -23,6 +23,7 @@ load_dotenv()
 
 def create_app():
     app = Flask(__name__)
+    
     CORS(app)
     app.config['SECRET_KEY'] = os.environ.get("APP_SECRET_KEY")
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
