@@ -1,8 +1,8 @@
-"""Create models user and record
+"""Create user and record models
 
-Revision ID: 87510fce9d30
+Revision ID: f557c0f9811d
 Revises: 
-Create Date: 2022-07-30 19:01:44.968428
+Create Date: 2022-08-16 12:57:05.711292
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '87510fce9d30'
+revision = 'f557c0f9811d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -31,19 +31,21 @@ def upgrade():
     sa.Column('gender', sa.String(), nullable=True),
     sa.Column('height_inches', sa.String(), nullable=True),
     sa.Column('weight_pound', sa.Integer(), nullable=True),
+    sa.Column('cal_goal', sa.Integer(), nullable=True),
+    sa.Column('fat_goal', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email')
     )
     op.create_table('record',
     sa.Column('id', postgresql.UUID(as_uuid=True), nullable=False),
-    sa.Column('register_at', sa.DateTime(), nullable=False),
-    sa.Column('log_date', sa.Date(), nullable=False),
-    sa.Column('meal_type', sa.String(), nullable=False),
-    sa.Column('serving_qty', sa.Integer(), nullable=False),
-    sa.Column('item_name', sa.String(), nullable=False),
-    sa.Column('brand_name', sa.String(), nullable=False),
-    sa.Column('total_cals', sa.Integer(), nullable=False),
-    sa.Column('total_fat', sa.Integer(), nullable=False),
+    sa.Column('register_at', sa.DateTime(), nullable=True),
+    sa.Column('log_date', sa.Date(), nullable=True),
+    sa.Column('meal_type', sa.String(), nullable=True),
+    sa.Column('serving_qty', sa.Integer(), nullable=True),
+    sa.Column('item_name', sa.String(), nullable=True),
+    sa.Column('brand_name', sa.String(), nullable=True),
+    sa.Column('total_cals', sa.Integer(), nullable=True),
+    sa.Column('total_fat', sa.Integer(), nullable=True),
     sa.Column('user_id', postgresql.UUID(as_uuid=True), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('id')

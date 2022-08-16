@@ -38,31 +38,4 @@ class User(db.Model, UserMixin):
             "fat_goal": self.fat_goal
         }
 
-    @staticmethod
-    def post_user_oauth(user):
-        chosen_user = User.query.get(user["user_id"])
-        if not chosen_user:
-            new_user = User(
-                email=user["email"],
-                name=user["name"],
-                google_id=user["google_id"],
-                picture=user["profile_pic"],
-                user_name=None,
-                password=None,
-                dob=None,
-                gender=None,
-                height_inches=None,
-                weight_pound=None
-            )
-            db.session.add(new_user)
-            db.session.commit()
-            return jsonify(new_user), 201
-
-    @staticmethod
-    def get_user_oauth(google_id):
-        chosen_user = User.query.get(google_id)
-        if not chosen_user:
-            return None
-        return jsonify(chosen_user), 200
-
 

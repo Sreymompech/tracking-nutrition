@@ -102,27 +102,7 @@ def post_record():
     db.session.add(new_record)
     db.session.commit()
     return jsonify(new_record.response_record()), 201
-# @records_bp.route("", methods=["POST"])
-# def post_record():
-#     request_record = validate_key_post_record()
-#     if "register_at" not in request_record:
-#         request_record["register_at"] = datetime.now()
-#         #datetime.strptime(request_record["register_at"], "%b %d %Y %H:%M:%S")
 
-#     new_record = Record(
-#         log_date = datetime.strptime(request_record["log_date"], "%b %d %Y"),
-#         meal_type = request_record["meal_type"].capitalize(),
-#         serving_qty = request_record["serving_qty"],
-#         register_at = request_record["register_at"],
-#         item_name = request_record["item_name"],
-#         brand_name = request_record["brand_name"],
-#         total_cals = request_record["total_cals"],
-#         total_fat = request_record["total_fat"]
-#     )
-
-#     db.session.add(new_record)
-#     db.session.commit()
-#     return jsonify(new_record.response_record()), 201
 
 # update new record
 @records_bp.route("/<record_id>", methods=["PUT", "PATCH"])

@@ -37,22 +37,6 @@ def create_user_login():
         db.session.commit()
         return jsonify(new_user.response_user_profile()), 201
     abort(make_response({"message": f"The user was existed in database"}, 200))
-        #register_at = datetime.strptime(request_user["register_at"], "%b %d %Y %H:%M:%S")
-    # users = User.query.all()
-    # for user in users:
-    #     if request_user["email"] != user.email and request_user["login_id"] != user.login_id:
-    #         new_user = User(
-    #             email = request_user["email"],
-    #             name = request_user["name"],
-    #             picture = request_user["picture"],
-    #             login_id = request_user["login_id"],
-    #             register_at = register_at
-    #         )
-    #         db.session.add(new_user)
-    #         db.session.commit()
-    #         return jsonify(new_user.response_user_profile()), 201
-    #     abort(make_response({"message": f"The user was existed in database"}, 200))
-
 
 # create user profile
 @users_bp.route("/<user_id>", methods=["PATCH"])
@@ -215,8 +199,6 @@ def create_record_belong_user(user_id):
     if chosen_user or len(chosen_user.records) == 0:
         new_record = Record(
             log_date = datetime.strptime(request_record["log_date"], "%m/%d/%Y"),
-            # meal_type = request_record["meal_type"].capitalize(),
-            # serving_qty = request_record["serving_qty"],
             register_at = register_at,
             item_name = request_record["item_name"],
             brand_name = request_record["brand_name"],

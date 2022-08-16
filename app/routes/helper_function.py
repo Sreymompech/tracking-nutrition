@@ -97,13 +97,7 @@ def sort_or_filter_records():
 
 
     # *****************************************************************************************
-# helper function for users
-# def get_user_or_abort(login_id):
-#     if current_user:
-#         exist_user = User.query.filter_by(login_id=current_user.login_id).first()
-#         return exist_user
-#     flash ("User not login!")
-#     abort(make_response({"message": f"The user id {login_id} is not found"}, 404))
+
 
 def get_user_or_abort(user_id):
     chosen_user = User.query.get(user_id)
@@ -111,12 +105,6 @@ def get_user_or_abort(user_id):
         return chosen_user
     abort(make_response({"message": f"The user id {user_id} is not found"}, 404))
 
-# def get_user_by_oauth_or_abort(login_id):
-#     chosen_user = User.query.filter_by(login_id=login_id)
-#     exist_user = User.query.filter_by(id=chosen_user["id"])
-#     if exist_user:
-#         return exist_user
-#     abort(make_response({"message": f"The user oauth id {login_id} is not found"}, 404))
 
 def validate_key_login():
     request_user = request.get_json()
@@ -147,42 +135,6 @@ def validate_key_profile():
     elif "name" not in request_user:
         abort(make_response({"message": "name is invalid"}, 400))
     
-
-# def sort_or_filter_user():
-#     # return empty list when no task in database
-#     if len(User.query.all()) == 0:
-#         return jsonify([]), 200
-
-#     params = request.args
-#     # sort users by field
-#     if "field" in params and "sort" in params:
-#         if params["sort"].lower() == "desc" or params["sort"].lower() == "descending":
-#             if params["field"].lower() == "name":
-#                 users = User.query.order_by(desc(User.name)).all()
-#             elif params["field"].lower() == "id":
-#                 users = User.query.order_by(desc(User.register_at)).all()
-#             elif params["field"].lower() == "dob":
-#                 users = User.query.order_by(desc(User.dob)).all()
-#             elif params["field"].lower() == "gender":
-#                 users = User.query.order_by(desc(User.gender)).all()
-#         else:
-#             if params["field"].lower() == "name":
-#                 users = User.query.order_by(asc(User.name)).all()
-#             elif params["field"].lower() == "id":
-#                 users = User.query.order_by(asc(User.register_at)).all()
-#             elif params["field"].lower() == "dob":
-#                 users = User.query.order_by(asc(User.dob)).all()
-#             elif params["field"].lower() == "gender":
-#                 users = User.query.order_by(asc(User.gender)).all()
-
-#     # filter by gender
-#     elif "gender" in params:
-#         users = User.query.filter_by(gender=params["gender"]).all()
-
-#     # no any query params will sort by register date
-#     else:     
-#         users = User.query.order_by(asc(User.register_at)).all()
-#     return users
 
 def sort_or_filder_record_user_id(user_id):
     
