@@ -46,9 +46,7 @@ export const AuthContextProvider = ({ children }) => {
   // keep tracking food record by date for showing user the record
   const [reviewFoodRecordByDate, setReviewFoodRecordByDate] = useState([]);
   // URL for users route at backend
-  const userURL = "http://127.0.0.1:5000/users";
-  // URL for calling food api from backend
-  // const foodURL = "http://127.0.0.1:5000/foods";
+  const userURL = "https://sreymom-nutrition-tracking.herokuapp.com/users";
 
   // sign in function
   const googleSignIn = () => {

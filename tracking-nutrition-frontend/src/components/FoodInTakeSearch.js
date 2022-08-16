@@ -30,9 +30,10 @@ const FoodInTakeSearch = () => {
   // keep tracing showing all food records of user
   const [showAllFoodRecord, setShowAllFoodRecord] = useState(false);
   // URL for calling food api from backend
-  const foodURL = "http://127.0.0.1:5000/foods";
+  const foodURL = "https://sreymom-nutrition-tracking.herokuapp.com/foods";
   // URL for adding user record of food
-  const recordFoodURL = "http://127.0.0.1:5000/users";
+  const recordFoodURL =
+    "https://sreymom-nutrition-tracking.herokuapp.com/users";
 
   const { existUser, fetchUserRecord, googleUser, fetchShowFoodRecordByDate } =
     UserAuth();
