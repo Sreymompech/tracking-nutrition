@@ -101,13 +101,21 @@ export const AuthContextProvider = ({ children }) => {
       .get(userURL)
       .then((resp) => {
         const userData = [...resp.data];
+        console.log("updateexistuser userdata", userData);
+        console.log("updateexistuser googleuser", googleUser);
         for (let user of userData) {
           if (
             user.login_id === googleUser["providerData"][0].uid &&
             user.email === googleUser?.email
           ) {
-            fetchUserById(user.id);
-            alert("exist user was updated in state");
+            // fetchUserById(user.id);
+            // alert("exist user was updated in state");
+            //set state for exist user
+            const loginUser = localStorage.setItem(
+              "existUser",
+              JSON.stringify(user)
+            );
+            setExistUser(user);
           }
         }
       })
@@ -116,14 +124,76 @@ export const AuthContextProvider = ({ children }) => {
       });
   };
 
+  // const oauthUser = (loginUser) => {
+  //   axios
+  //     .get(userURL)
+  //     .then((response) => {
+  //       const userData = [...response.data];
+  //       console.log("user Data", userData);
+  //       if (userData.length === 0) {
+  //         console.log("1");
+  //         const newUser = {
+  //           email: loginUser?.email,
+  //           name: loginUser?.displayName,
+  //           picture: loginUser?.photoURL,
+  //           login_id: loginUser["providerData"][0].uid,
+  //         };
+  //         createLogInUser(newUser);
+  //       } else {
+  //         let confirmUser = false;
+  //         for (let user of userData) {
+  //           console.log("2");
+  //           if (
+  //             user.login_id === loginUser["providerData"][0].uid &&
+  //             user.email === loginUser?.email
+  //           ) {
+  //             setExistUser(user);
+  //             localStorage.setItem("existUser", JSON.stringify(user));
+  //             console.log("user login step 2", user);
+  //             confirmUser = !confirmUser;
+  //             alert("Login sucessful");
+  //           }
+  //         }
+  //         if (confirmUser === false || userData.length === 0) {
+  //           console.log("3");
+  //           const newUser = {
+  //             email: loginUser?.email,
+  //             name: loginUser?.displayName,
+  //             picture: loginUser?.photoURL,
+  //             login_id: loginUser["providerData"][0].uid,
+  //           };
+  //           createLogInUser(newUser);
+  //         }
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
   const oauthUser = (loginUser) => {
     axios
       .get(userURL)
       .then((response) => {
         const userData = [...response.data];
         console.log("user Data", userData);
-        if (userData.length === 0) {
-          console.log("1");
+
+        let confirmUser = false;
+        for (let user of userData) {
+          console.log("2");
+          if (
+            user.login_id === loginUser["providerData"][0].uid &&
+            user.email === loginUser?.email
+          ) {
+            setExistUser(user);
+            localStorage.setItem("existUser", JSON.stringify(user));
+            console.log("user login step 2", user);
+            confirmUser = !confirmUser;
+            alert("Login sucessful");
+          }
+        }
+        if (confirmUser === false || userData.length === 0) {
+          console.log("3");
           const newUser = {
             email: loginUser?.email,
             name: loginUser?.displayName,
@@ -131,31 +201,6 @@ export const AuthContextProvider = ({ children }) => {
             login_id: loginUser["providerData"][0].uid,
           };
           createLogInUser(newUser);
-        } else {
-          let confirmUser = false;
-          for (let user of userData) {
-            console.log("2");
-            if (
-              user.login_id === loginUser["providerData"][0].uid &&
-              user.email === loginUser?.email
-            ) {
-              setExistUser(user);
-              localStorage.setItem("existUser", JSON.stringify(user));
-              console.log("user login step 2", user);
-              confirmUser = !confirmUser;
-              alert("Login sucessful");
-            }
-          }
-          if (confirmUser === false || userData.length === 0) {
-            console.log("3");
-            const newUser = {
-              email: loginUser?.email,
-              name: loginUser?.displayName,
-              picture: loginUser?.photoURL,
-              login_id: loginUser["providerData"][0].uid,
-            };
-            createLogInUser(newUser);
-          }
         }
       })
       .catch((error) => {
