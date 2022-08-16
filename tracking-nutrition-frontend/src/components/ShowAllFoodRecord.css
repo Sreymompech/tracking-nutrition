@@ -1,0 +1,45 @@
+.show-food-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    font-family: 'Bubbler One', sans-serif;
+    font-size: 20px;
+}
+
+.show-food-btn-delete {
+    width: 70px;
+    
+    
+}
+
+.show-food-btn-delete {
+    background: #f6c6ea;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-left: 40px;
+
+} 
+.show-food-btn-delete:hover {
+    background: #cdf0ea;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.show-food-date, .show-food-meal {
+    width: 150px;
+    text-align: center;
+}
+
+.show-food-amount {
+    width: 100px;
+    text-align: center;
+}
+
+.show-food-item {
+    width: 420px;
+}
+
+.show-food-date, .show-food-meal, .show-food-amount, .show-food-item{
+    height: 100px;
+    border: 1px solid rgb(247, 243, 243);
+}

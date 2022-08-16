@@ -7,7 +7,6 @@ const FoodsList = (props) => {
     return (
       <Food
         key={foodData.item_id}
-        // foodData={foodData}
         item_id={foodData.item_id}
         brand_name={foodData.brand_name}
         item_name={foodData.item_name}

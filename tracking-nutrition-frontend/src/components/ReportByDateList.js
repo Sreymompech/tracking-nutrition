@@ -5,7 +5,7 @@ import { UserAuth } from "../context/AuthContext";
 import "./reportbydate.css";
 
 const ReportByDateList = (props) => {
-  const { caloriesGoal, existUser } = UserAuth();
+  const { existUser } = UserAuth();
   const recordByDateComponent = props.recordByDate["records"].map(
     (record, index) => {
       return (
@@ -31,10 +31,6 @@ const ReportByDateList = (props) => {
       <div className="reportdate-des">
         A intake food list, Calories and Fat consumed by selected date.
       </div>
-      {/* <div className="myfood-report">MyFoodList Report</div>
-      <div className="myfood-des">
-        A intake food list, Calories and Fat consumed.
-      </div> */}
       <ProfileHeader />
       <div className="th-selecteddate-record-title">
         Calories and Fats Asscessment
@@ -82,10 +78,7 @@ const ReportByDateList = (props) => {
               {" "}
               {props.recordByDate.totalFats}
             </div>
-            <div className="selecteddate-fat-goal">
-              {/* {props.recordByDate.fatsGoal} */}
-              {existUser.fat_goal}
-            </div>
+            <div className="selecteddate-fat-goal">{existUser.fat_goal}</div>
             <div
               className={
                 props.fatsAss === "In Range"

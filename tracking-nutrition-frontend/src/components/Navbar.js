@@ -14,7 +14,6 @@ const Navbar = () => {
       console.log(error);
     }
     localStorage.removeItem("existUser");
-    console.log("log out exist user", existUser);
   };
 
   return (

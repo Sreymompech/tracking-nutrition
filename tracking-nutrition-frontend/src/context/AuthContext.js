@@ -13,7 +13,6 @@ import {
 import { auth } from "../firebase-config";
 import axios from "axios";
 import moment from "moment";
-// import { useNavigate } from "react-router-dom";
 
 // create a instance of context
 const AuthContext = createContext();
@@ -42,8 +41,10 @@ export const AuthContextProvider = ({ children }) => {
   const [logDateList, setLogDateList] = useState([]);
   // keep tracking food list by log date record
   const [foodListRecord, setFoodListRecord] = useState([]);
-  // keep tracking food record by date
+  // keep tracking food record by date for user update record
   const [foodRecordByDate, setFoodRecordByDate] = useState([]);
+  // keep tracking food record by date for showing user the record
+  const [reviewFoodRecordByDate, setReviewFoodRecordByDate] = useState([]);
   // URL for users route at backend
   const userURL = "http://127.0.0.1:5000/users";
   // URL for calling food api from backend
@@ -64,7 +65,6 @@ export const AuthContextProvider = ({ children }) => {
 
   // fetch each user by id
   const fetchUserById = (user_id) => {
-    console.log("user id", user_id);
     axios
       .get(`${userURL}/${user_id}`)
       .then((resp) => {
@@ -76,8 +76,6 @@ export const AuthContextProvider = ({ children }) => {
           JSON.stringify(resp.data)
         );
         setExistUser(loginUser);
-        // localStorage.setItem("existUser", JSON.stringify(resp.data));
-        // set stat of calories goal for user
       })
       .catch((err) => {
         console.log(err);
@@ -167,19 +165,58 @@ export const AuthContextProvider = ({ children }) => {
       });
   };
 
-  // fetch food record of user by date
+  // fetch food record of user by date for show record
+  const fetchShowFoodRecordByDate = (user_id, date) => {
+    axios.get(`${userURL}/${user_id}/records`).then((resp) => {
+      const resopnseFoodData = [...resp.data];
+      const recordList = [];
+      for (let record of resopnseFoodData) {
+        console.log("Recor date", record.log_date);
+        // convert log_date to string
+        const stringDatelog = record.log_date.toString();
+        // convert log_date to format we want to display
+        const formatedlogdate = moment(
+          stringDatelog,
+          "ddd, DD MMM YYYY HH:mm:ss z"
+        ).format("YYYY-MM-DD");
+        console.log("formatedlogdate", formatedlogdate);
+        if (formatedlogdate === date) {
+          recordList.push(record);
+        }
+      }
+      setReviewFoodRecordByDate(recordList);
+    });
+  };
+
+  // fetch food record of user by date for user update
   const fetchFoodRecordByDate = (user_id, date) => {
     axios
       .get(`${userURL}/${user_id}/records`)
       .then((res) => {
         const newRecord = [...res.data];
+        console.log("authcontext fetchfoodrecordbydate res", res.data);
         const recordsList = [];
         for (let record of newRecord) {
-          if (record.log_date === date) {
+          console.log("Recor date", record.log_date);
+          // convert log_date to string
+          const stringDatelog = record.log_date.toString();
+          // convert log_date to format we want to display
+          const formatedlogdate = moment(
+            stringDatelog,
+            "ddd, DD MMM YYYY HH:mm:ss z"
+          ).format("YYYY-MM-DD");
+          console.log("formatedlogdate", formatedlogdate);
+          if (
+            formatedlogdate === date &&
+            record.meal_type === null &&
+            record.serving_qty === null
+          ) {
+            console.log("im in checking date");
             recordsList.push(record);
           }
         }
         setFoodRecordByDate(recordsList);
+        console.log("recordList", recordsList);
         console.log("foodRecordbydate", foodRecordByDate);
       })
       .catch((err) => {});
@@ -204,8 +241,6 @@ export const AuthContextProvider = ({ children }) => {
             total_cals: record.total_cals,
             total_fat: record.total_fat,
             user_id: record.user_id,
-            cal_goal: record.cal_goal,
-            fat_goal: record.fat_goal,
           };
         });
         setEachUserRecordData(newRecords);
@@ -324,6 +359,21 @@ export const AuthContextProvider = ({ children }) => {
       });
   };
 
+  // delete food by call backend route
+  const deleteFood = (record_id) => {
+    axios
+      .delete(`${userURL}/${existUser.id}/records/${record_id}`)
+      .then((response) => {
+        console.log("update food", response);
+        fetchUserRecord(existUser.id);
+        alert("Food record was successfully deleted");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Oop! could not delete food in databse.");
+      });
+  };
+
   // working on report route
   // set calories goal by gender
   // const defineCaloriesGoal = (gender) => {
@@ -345,11 +395,6 @@ export const AuthContextProvider = ({ children }) => {
       unsubscribe();
     };
   }, []);
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   console.log("contex exist user", existUser);
-  //   navigate("/profile");
-  // }, [existUser]);
 
   return (
     // pass all props down in this AuthContex.Provider so you can call it to user any where by import { UserAuth } from "../context/AuthContext";
@@ -373,6 +418,10 @@ export const AuthContextProvider = ({ children }) => {
         foodListRecord,
         userURL,
         fetchFoodRecordByDate,
+        foodRecordByDate,
+        deleteFood,
+        fetchShowFoodRecordByDate,
+        reviewFoodRecordByDate,
       }}
     >
       {/* children will replace by all components that want to access the value of AuthContext provider */}

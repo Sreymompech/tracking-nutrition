@@ -7,7 +7,7 @@ import moment from "moment";
 
 // intake page for food record
 const Record = (props) => {
-  const { googleUser, existUser, fetchUserRecord, fetchFoodRecordByDate } =
+  const { googleUser, existUser, fetchFoodRecordByDate, deleteFood } =
     UserAuth();
   const [mealType, setMealType] = useState("");
   const [amount, setAmount] = useState("");
@@ -47,32 +47,15 @@ const Record = (props) => {
     };
     if (googleUser["providerData"][0].uid === existUser.login_id) {
       updateFood(foodInfo);
-      fetchUserRecord(existUser.id);
-      // fetchFoodRecordByDate(existUser.id, props.selectedDateLog);
+      fetchFoodRecordByDate(existUser.id, props.selectedDateLog);
     }
-  };
-
-  // delete food by call backend route
-  const deleteFood = (record_id) => {
-    axios
-      .delete(`${props.recordFoodURL}/${existUser.id}/records/${record_id}`)
-      .then((response) => {
-        console.log("update food", response);
-        // fetchUserRecord(existUser.id);
-        alert("Food record was successfully deleted");
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("Oop! could not delete food in databse.");
-      });
   };
 
   //delete food in database afther they click delete btn
   const onDeleteFood = () => {
     if (googleUser["providerData"][0].uid === existUser.login_id) {
       deleteFood(props.id);
-      fetchUserRecord(existUser.id);
-      // fetchFoodRecordByDate(existUser.id, props.selectedDateLog);
+      fetchFoodRecordByDate(existUser.id, props.selectedDateLog);
     }
   };
 
@@ -129,5 +112,3 @@ const Record = (props) => {
 };
 
 export default Record;
-
-//Moment(props.log_date).format("MM/DD/YYYY")

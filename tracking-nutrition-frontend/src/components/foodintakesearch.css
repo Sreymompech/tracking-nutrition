@@ -1,19 +1,22 @@
 .food-search-form {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: flex-start;
     padding: 50px;
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.food-search-input, .log-date-input {
+.food-search-input, .log-date-input, .review-record-input {
  
     border: 1px solid black;
     border-radius: 12px;
 }
+.food-search-input {
+    margin-left: 50px;
+}
 
-.food-search-btn {
+.food-search-btn, .all-record-btn {
     margin-left: 10px;
     border-radius: 12px;
     width: 80px;
@@ -39,7 +42,7 @@
 }
 
 .log-date-input {
-    margin-right: 100px;
+    margin-right: 50px;
     margin-left: 10px;
 }
 
@@ -54,13 +57,23 @@
     margin-left: 100px;
 }
 
-.log-date {
+.log-date, .review-record {
     font-family: 'Aladin', cursive;
     font-size: 25px;
     color: #a03c78
 }
 
+.review-record-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    position: absolute;
+    top: 40px;
+    right: 30px
+}
 
 
-
-
+.review-record-input {
+    margin-left: 20px;
+    margin-right: 20px;
+}

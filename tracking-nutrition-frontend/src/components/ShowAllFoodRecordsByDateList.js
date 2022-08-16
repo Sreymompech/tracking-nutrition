@@ -1,20 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { UserAuth } from "../context/AuthContext";
-import Record from "./Record";
-import "./record.css";
+import ShowAllFoodRecordByDate from "./ShowAllFoodRecordByDate";
 
-const FoodRecordList = (props) => {
-  const { foodRecordByDate, fetchFoodRecordByDate, existUser } = UserAuth();
+const ShowAllFoodRecordsByDateList = () => {
+  const { reviewFoodRecordByDate } = UserAuth();
 
-  useEffect(() => {
-    fetchFoodRecordByDate(existUser.id, props.selectedDateLog);
-  });
-  console.log("foodRecordbydate in foodrecordlist", foodRecordByDate);
-
-  const recordDataComponent = foodRecordByDate.map((record, index) => {
+  const allFoodRecordComponent = reviewFoodRecordByDate.map((record, ind) => {
     return (
-      <Record
-        key={index}
+      <ShowAllFoodRecordByDate
+        key={ind}
         id={record.id}
         register_at={record.register_at}
         log_date={record.log_date}
@@ -25,25 +19,22 @@ const FoodRecordList = (props) => {
         total_cals={record.total_cals}
         total_fat={record.total_fat}
         user_id={record.user_id}
-        recordFoodURL={props.recordFoodURL}
-        selectedDateLog={props.selectedDateLog}
       />
     );
   });
   return (
     <div className="tb-list-container">
-      <div className="tb-des">Please complete all the empty column.</div>
+      <div className="tb-des">Daily Food Records By Date</div>
       <div className="tb-list">
         <div className="tb-del">Delete</div>
-        <div className="tb-update">Update</div>
         <div className="tb-date">Log Date</div>
         <div className="tb-meal">Meal</div>
         <div className="tb-amount">Amount</div>
         <div className="tb-item">Item</div>
       </div>
-      <div className="list-records">{recordDataComponent}</div>
+      <div className="list-records">{allFoodRecordComponent}</div>
     </div>
   );
 };
 
-export default FoodRecordList;
+export default ShowAllFoodRecordsByDateList;

@@ -124,21 +124,10 @@ const Report = () => {
     fetchRecordUserByDate(existUser.id, selectedDate);
     setSelectedDate("");
     setReportType("");
-    // setShowReportError(false);
-    // setShowReportWelcome(false);
   };
 
-  // useEffect(() => {
-  //   fetchRecordUserByDate(existUser.id, selectedDate);
-  // }, [existUser.id]);
-  // console.log("showreportWelcome", showReportWelcome);
   return (
     <div className="w-screen flex justify-center items-center bg-white relative report-container">
-      {/* <img
-        className="absolute top-0 left-0 bottom-0 w-screen h-screen object-cover report-img"
-        src="https://images.pexels.com/photos/733857/pexels-photo-733857.jpeg?auto=compress&cs=tinysrgb&w=1200"
-        alt="bg-img"
-      ></img> */}
       <div className="bg-gray-500 bg-opacity-20 report-content">
         <div className="report-type">
           <button
