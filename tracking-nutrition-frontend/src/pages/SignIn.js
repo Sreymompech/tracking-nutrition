@@ -16,12 +16,10 @@ const SignIn = () => {
   };
 
   useEffect(() => {
-    console.log("google User", googleUser);
     if (googleUser !== null) {
       oauthUser(googleUser);
       navigate("/profile");
       // window.location.reload();
-      console.log("exist user", existUser);
     }
   }, [googleUser]);
 

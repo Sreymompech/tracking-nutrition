@@ -130,9 +130,9 @@ const FoodInTakeSearch = () => {
     setReviewRecordByDate("");
   };
 
-  useEffect(() => {
-    fetchUserRecord(existUser.id);
-  }, []);
+  // useEffect(() => {
+  //   fetchUserRecord(existUser.id);
+  // }, []);
 
   useEffect(() => {
     fetchShowFoodRecordByDate(existUser.id, reviewRecordByDate);

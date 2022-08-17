@@ -61,24 +61,24 @@ export const AuthContextProvider = ({ children }) => {
     signOut(auth);
   };
 
-  // fetch each user by id
-  const fetchUserById = (user_id) => {
-    axios
-      .get(`${userURL}/${user_id}`)
-      .then((resp) => {
-        console.log("exist user fetch by id resp", resp);
+  // // fetch each user by id
+  // const fetchUserById = (user_id) => {
+  //   axios
+  //     .get(`${userURL}/${user_id}`)
+  //     .then((resp) => {
+  //       console.log("exist user fetch by id resp", resp);
 
-        //set state for exist user
-        const loginUser = localStorage.setItem(
-          "existUser",
-          JSON.stringify(resp.data)
-        );
-        setExistUser(loginUser);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  //       //set state for exist user
+  //       const loginUser = localStorage.setItem(
+  //         "existUser",
+  //         JSON.stringify(resp.data)
+  //       );
+  //       setExistUser(loginUser);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   // ceate new user in DB when they first login
   const createLogInUser = (newUser) => {
@@ -99,20 +99,12 @@ export const AuthContextProvider = ({ children }) => {
       .get(userURL)
       .then((resp) => {
         const userData = [...resp.data];
-        console.log("updateexistuser userdata", userData);
-        console.log("updateexistuser googleuser", googleUser);
         for (let user of userData) {
           if (
             user.login_id === googleUser["providerData"][0].uid &&
             user.email === googleUser?.email
           ) {
-            // fetchUserById(user.id);
-            // alert("exist user was updated in state");
-            //set state for exist user
-            const loginUser = localStorage.setItem(
-              "existUser",
-              JSON.stringify(user)
-            );
+            localStorage.setItem("existUser", JSON.stringify(user));
             setExistUser(user);
           }
         }
@@ -122,76 +114,24 @@ export const AuthContextProvider = ({ children }) => {
       });
   };
 
-  // const oauthUser = (loginUser) => {
-  //   axios
-  //     .get(userURL)
-  //     .then((response) => {
-  //       const userData = [...response.data];
-  //       console.log("user Data", userData);
-  //       if (userData.length === 0) {
-  //         console.log("1");
-  //         const newUser = {
-  //           email: loginUser?.email,
-  //           name: loginUser?.displayName,
-  //           picture: loginUser?.photoURL,
-  //           login_id: loginUser["providerData"][0].uid,
-  //         };
-  //         createLogInUser(newUser);
-  //       } else {
-  //         let confirmUser = false;
-  //         for (let user of userData) {
-  //           console.log("2");
-  //           if (
-  //             user.login_id === loginUser["providerData"][0].uid &&
-  //             user.email === loginUser?.email
-  //           ) {
-  //             setExistUser(user);
-  //             localStorage.setItem("existUser", JSON.stringify(user));
-  //             console.log("user login step 2", user);
-  //             confirmUser = !confirmUser;
-  //             alert("Login sucessful");
-  //           }
-  //         }
-  //         if (confirmUser === false || userData.length === 0) {
-  //           console.log("3");
-  //           const newUser = {
-  //             email: loginUser?.email,
-  //             name: loginUser?.displayName,
-  //             picture: loginUser?.photoURL,
-  //             login_id: loginUser["providerData"][0].uid,
-  //           };
-  //           createLogInUser(newUser);
-  //         }
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
-
   const oauthUser = (loginUser) => {
     axios
       .get(userURL)
       .then((response) => {
         const userData = [...response.data];
-        console.log("user Data", userData);
-
         let confirmUser = false;
         for (let user of userData) {
-          console.log("2");
           if (
             user.login_id === loginUser["providerData"][0].uid &&
             user.email === loginUser?.email
           ) {
             setExistUser(user);
             localStorage.setItem("existUser", JSON.stringify(user));
-            console.log("user login step 2", user);
             confirmUser = !confirmUser;
             alert("Login sucessful");
           }
         }
         if (confirmUser === false || userData.length === 0) {
-          console.log("3");
           const newUser = {
             email: loginUser?.email,
             name: loginUser?.displayName,
@@ -212,7 +152,6 @@ export const AuthContextProvider = ({ children }) => {
       const resopnseFoodData = [...resp.data];
       const recordList = [];
       for (let record of resopnseFoodData) {
-        console.log("Recor date", record.log_date);
         // convert log_date to string
         const stringDatelog = record.log_date.toString();
         // convert log_date to format we want to display
@@ -235,10 +174,8 @@ export const AuthContextProvider = ({ children }) => {
       .get(`${userURL}/${user_id}/records`)
       .then((res) => {
         const newRecord = [...res.data];
-        console.log("authcontext fetchfoodrecordbydate res", res.data);
         const recordsList = [];
         for (let record of newRecord) {
-          console.log("Recor date", record.log_date);
           // convert log_date to string
           const stringDatelog = record.log_date.toString();
           // convert log_date to format we want to display
@@ -246,19 +183,15 @@ export const AuthContextProvider = ({ children }) => {
             stringDatelog,
             "ddd, DD MMM YYYY HH:mm:ss z"
           ).format("YYYY-MM-DD");
-          console.log("formatedlogdate", formatedlogdate);
           if (
             formatedlogdate === date &&
             record.meal_type === null &&
             record.serving_qty === null
           ) {
-            console.log("im in checking date");
             recordsList.push(record);
           }
         }
         setFoodRecordByDate(recordsList);
-        console.log("recordList", recordsList);
-        console.log("foodRecordbydate", foodRecordByDate);
       })
       .catch((err) => {});
   };
@@ -302,7 +235,6 @@ export const AuthContextProvider = ({ children }) => {
           }
         }
         setLogDateList(dateList);
-        //console.log("dateList", dateList);
 
         // set state of total calories by log date
         const caloriesList = [];
@@ -329,7 +261,7 @@ export const AuthContextProvider = ({ children }) => {
             }
           }
           const calDiff = Number(totalCals - existUser.cal_goal).toFixed(2);
-          const fatDiff = Number(existUser.fat_goal - totalFats).toFixed(2);
+          const fatDiff = Number(totalFats - existUser.fat_goal).toFixed(2);
 
           let caloriesAss = "";
           if (totalCals > existUser.cal_goal + 10) {
@@ -356,7 +288,6 @@ export const AuthContextProvider = ({ children }) => {
             totalRecord: countRecord,
             calsDiff: calDiff,
             fatsDiff: fatDiff,
-            // fatsGoal: fatGoal,
             calsAss: caloriesAss,
             fatsAss: fatAss,
           });
@@ -373,7 +304,6 @@ export const AuthContextProvider = ({ children }) => {
         setFoodListRecord(logDateRecords);
       })
       .catch((error) => {
-        console.log("fetch user record error", error);
         alert("Oop! could not fetch record for this user");
       });
   };
@@ -383,8 +313,6 @@ export const AuthContextProvider = ({ children }) => {
     axios
       .delete(`${userURL}/${existUser.id}/records/${record_id}`)
       .then((response) => {
-        console.log("update food", response);
-        fetchUserRecord(existUser.id);
         alert("Food record was successfully deleted");
       })
       .catch((error) => {
@@ -397,8 +325,6 @@ export const AuthContextProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       // this is the format to call google id from googleUser --> currentUser["providerData"][0].uid
       setGoogleUser(currentUser);
-      console.log("currentUser", currentUser);
-      console.log("user provider", currentUser["providerData"][0]);
     });
     return () => {
       unsubscribe();
@@ -431,6 +357,7 @@ export const AuthContextProvider = ({ children }) => {
         deleteFood,
         fetchShowFoodRecordByDate,
         reviewFoodRecordByDate,
+        updateExistUser,
       }}
     >
       {/* children will replace by all components that want to access the value of AuthContext provider */}

@@ -5,8 +5,6 @@ import NavbarLink from "./NavbarLink";
 
 const Navbar = () => {
   const { googleUser, logOut, existUser } = UserAuth();
-  console.log("nav exist user", existUser);
-  console.log("nave google user", googleUser);
   const handleSignOut = async () => {
     try {
       await logOut();

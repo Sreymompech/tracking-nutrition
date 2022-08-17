@@ -6,16 +6,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const ProfileForm = () => {
-  const { googleUser, existUser, oauthUser } = UserAuth();
-  // keep tracking input profile form data height separate ft and in
-  // const [profileForm, setProfileForm] = useState(defaultProfile);
-
-  console.log("profie exist user", existUser);
-
-  // keep tracking the user profile by combine height in ft and in together and add to database
-  // const [userProfile, setUserProfile] = useState({});
+  const { googleUser, existUser, oauthUser, updateExistUser } = UserAuth();
   // backend rout for call axios to update user profile
-  const profileURL = "https://sreymom-nutrition-tracking.herokuapp.com/users";
+  const profileURL = " https://sreymom-nutrition-tracking.herokuapp.com/users";
   // access google user and exist user in database from use context
   useEffect(() => {
     oauthUser(googleUser);
@@ -71,7 +64,7 @@ const ProfileForm = () => {
       axios
         .patch(`${profileURL}/${existUser.id}`, profileInfo)
         .then((response) => {
-          console.log(response);
+          updateExistUser();
         })
 
         .catch((error) => {

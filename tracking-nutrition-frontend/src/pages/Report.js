@@ -24,7 +24,7 @@ const Report = () => {
   const [showReportError, setShowReportError] = useState(false);
   // keep tracking to show report welcome
   const [showReportWelcome, setShowReportWelcome] = useState(true);
-  const { caloriesGoal, existUser, userURL } = UserAuth();
+  const { existUser, userURL, updateExistUser } = UserAuth();
 
   // update reportType
   const updateReportType = (e) => {
@@ -37,9 +37,9 @@ const Report = () => {
   const updateSelectedDate = (e) => {
     setSelectedDate(e.target.value);
   };
+
   // fetch each user by id
   const fetchRecordUserByDate = (user_id, date) => {
-    console.log("user id", user_id);
     axios
       .get(`${userURL}/${user_id}/records`)
       .then((resp) => {
@@ -50,7 +50,6 @@ const Report = () => {
         let recordCount = 0;
 
         for (let record of recordList) {
-          console.log("Recor date", record.log_date);
           // convert log_date to string
           const stringDatelog = record.log_date.toString();
           // convert log_date to format we want to display
@@ -58,7 +57,6 @@ const Report = () => {
             stringDatelog,
             "ddd, DD MMM YYYY HH:mm:ss z"
           ).format("MM/DD/YYYY");
-          console.log("formatedlogdate", formatedlogdate);
           if (formatedlogdate === date) {
             recordByDate.push(record);
             totalCalories += record.total_cals;
@@ -68,48 +66,43 @@ const Report = () => {
         }
 
         // calculate cal diff, fat diff, cal asses, fat assess
-        const calDiff = Number(totalCalories - caloriesGoal).toFixed(2);
-        const fatGoal = Number(caloriesGoal * 0.3).toFixed(2);
-        const fatDiff = Number(fatGoal - totalFat).toFixed(2);
+        const calDiff = Number(totalCalories - existUser.cal_goal).toFixed(2);
+        const fatDiff = Number(totalFat - existUser.fat_goal).toFixed(2);
         let caloriesAss = "";
-        if (totalCalories > caloriesGoal + 5) {
+        if (totalCalories > existUser.cal_goal + 10) {
           caloriesAss = "Above Goal";
-        } else if (totalCalories < caloriesGoal - 5) {
+        } else if (totalCalories < existUser.cal_goal - 10) {
           caloriesAss = "Below Goal";
         } else {
           caloriesAss = "In Range";
         }
 
         let fatAss = "";
-        if (totalFat > fatGoal + 5) {
+        if (totalFat > existUser.fat_goal + 5) {
           fatAss = "Above Goal";
-        } else if (totalFat < fatGoal - 5) {
+        } else if (totalFat < existUser.fat_goal - 5) {
           fatAss = "Below Goal";
         } else {
           fatAss = "In Range";
         }
 
         if (recordByDate.length === 0) {
-          console.log("1");
           setShowReportError(true);
           setShowReportWelcome(false);
           setShowReportByDate(false);
         } else {
-          console.log("2");
           const newRecord = {
             date: date,
             records: recordByDate,
-            totalCals: totalCalories,
-            totalFats: totalFat,
+            totalCals: Number(totalCalories).toFixed(2),
+            totalFats: Number(totalFat).toFixed(2),
             totalRecords: recordCount,
-            fatsGoal: fatGoal,
             calsDiff: calDiff,
             fatsDiff: fatDiff,
             calsAss: caloriesAss,
             fatsAss: fatAss,
           };
           setSelectedRecordDate(newRecord);
-          console.log("newRecord", newRecord);
           setShowReportByDate(true);
           setShowReportError(false);
           setShowReportWelcome(false);
@@ -125,6 +118,10 @@ const Report = () => {
     setSelectedDate("");
     setReportType("");
   };
+
+  useEffect(() => {
+    updateExistUser();
+  }, []);
 
   return (
     <div className="w-screen flex justify-center items-center bg-white relative report-container">

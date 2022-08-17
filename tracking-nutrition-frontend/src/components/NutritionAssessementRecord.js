@@ -3,8 +3,8 @@ import { UserAuth } from "../context/AuthContext";
 import "./nutritionassessment.css";
 
 const NutritionAssessementRecord = (props) => {
-  const { caloriesGoal, existUser } = UserAuth();
-
+  const { existUser } = UserAuth();
+  console.log("existuser in asses", existUser);
   return (
     <div className="asses-report-container">
       <div className="asses-report-date">{props.date}</div>
@@ -31,7 +31,9 @@ const NutritionAssessementRecord = (props) => {
           <div className="empty"></div>
           <div className="asses-nutri-fat">Total Fats</div>
           <div className="asses-report-fat"> {props.totalFats}</div>
-          <div className="asses-fat-goal">{existUser.fat_goal}</div>
+          <div className="asses-fat-goal">
+            {Number(existUser.fat_goal).toFixed(2)}
+          </div>
           <div
             className={
               props.fatsAss === "In Range"
